@@ -7,8 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
 class StartViewController: UIViewController {
+    
+    //ローカルに保存されたユーザがいるかを確認する用
+    let defaults:UserDefaults = UserDefaults.standard
+    
+    //現在のログイン状態を示すラベル
+    @IBOutlet var stateLabel:UILabel!
+    
+    //現在ログインしているユーザーを取得する
+    func getNowLoginUser(){
+        if let user = FIRAuth.auth()?.currentUser {
+            //ユーザーがログインしている場合
+            stateLabel.text = "現在 \(user.displayName)がログイン"
+        }else{
+            //誰もログインしていない場合
+            stateLabel.text = "未ログイン"
+        }
+    }
+    
+    //ビューが呼ばれるたびに呼ばれる
+    override func viewWillAppear(_ animated: Bool) {
+        viewWillAppear(animated)
+        self.getNowLoginUser()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +45,29 @@ class StartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //サインイン画面に行く
+    func transitionToSignin(){
+        performSegue(withIdentifier: "toSignin", sender: nil)
     }
-    */
+    
+    //ログイン画面に行く
+    func transitionToLogin(){
+        performSegue(withIdentifier: "toLogin", sender: nil)
+    }
+    
+    //ユーザー画面に行く際に保存されたユーザーがいるかどうかで，遷移先を変える
+    @IBAction func authControl(){
+        if let user = defaults.object(forKey: "namekey"){
+            self.transitionToLogin()
+        }else{
+            self.transitionToSignin()
+        }
+    }
+    
+    //新規ユーザー登録をする際のアラート
+    func alartAuth(){
+        
+    }
+
 
 }
