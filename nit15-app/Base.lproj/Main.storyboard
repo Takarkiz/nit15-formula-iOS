@@ -49,20 +49,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q6C-Gg-8cg">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="設定" id="zKz-Yr-FPP">
+                                        <barButtonItem key="rightBarButtonItem" title="次へ" id="aUv-RL-No7">
+                                            <connections>
+                                                <action selector="signUp" destination="b4a-uS-mdE" id="rbB-4d-f6h"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.80224609375" green="0.80224609375" blue="0.80224609375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="新規登録" id="1oc-6g-RnJ">
-                        <barButtonItem key="rightBarButtonItem" title="次へ" id="Fdx-Mc-pbw">
-                            <connections>
-                                <segue destination="TD0-rW-2Lc" kind="show" id="xmd-f0-Nu0"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="次へ" id="Fdx-Mc-pbw"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mailTextField" destination="uwb-yr-y1A" id="fl1-2b-36z"/>
+                        <outlet property="passTextField" destination="dsQ-CL-2hu" id="YrT-fK-0Zh"/>
+                        <segue destination="TD0-rW-2Lc" kind="show" identifier="toDetail" id="SHF-ig-jvG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRy-cK-Boz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919" y="854"/>
+            <point key="canvasLocation" x="999" y="980"/>
         </scene>
         <!--名前登録-->
         <scene sceneID="Dor-ud-kAZ">
@@ -90,6 +104,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="83E-KJ-K0n">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="sSb-yD-sLv">
+                                        <barButtonItem key="rightBarButtonItem" title="完了" id="Ss2-mY-Std">
+                                            <connections>
+                                                <action selector="finish" destination="TD0-rW-2Lc" id="vnM-3L-Icn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.8022460938" green="0.8022460938" blue="0.8022460938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -97,12 +124,13 @@
                         <barButtonItem key="rightBarButtonItem" title="完了" id="Sb3-5d-Vgd"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="nameTextField" destination="gvF-9y-2JC" id="iMm-fT-1JO"/>
                         <segue destination="PhS-5W-2B2" kind="show" id="a3N-zF-D7q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i90-fX-wch" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616.25" y="853.52112676056333"/>
+            <point key="canvasLocation" x="1643" y="992"/>
         </scene>
         <!--Data View Controller-->
         <scene sceneID="YiK-dt-MsA">
@@ -165,6 +193,9 @@
                                 <rect key="frame" x="179" y="346" width="78" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="三角コーンのアイコン素材.png"/>
+                                <connections>
+                                    <action selector="pylon" destination="lzv-Fv-PoF" eventType="touchUpInside" id="h6C-FB-2Ft"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="×0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shv-wr-7dV">
                                 <rect key="frame" x="195" y="448" width="47" height="21"/>
@@ -178,6 +209,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="戻る"/>
+                                <connections>
+                                    <action selector="back" destination="lzv-Fv-PoF" eventType="touchUpInside" id="riT-tT-gjt"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jfo-af-PCN">
                                 <rect key="frame" x="0.0" y="472" width="649" height="96"/>
@@ -250,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rmj-mZ-XVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243.75" y="-559.85915492957747"/>
+            <point key="canvasLocation" x="244" y="-529"/>
         </scene>
         <!--Old Data View Controller-->
         <scene sceneID="F7O-ra-hPT">
@@ -268,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fOX-Af-fR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="-560"/>
+            <point key="canvasLocation" x="939" y="-529"/>
         </scene>
         <!--ユーザー-->
         <scene sceneID="BBg-Xz-FEd">
@@ -297,16 +331,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gX-1G-2Zj">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="設定" id="31I-nU-Hla">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gcn-Zr-d6b">
+                                            <connections>
+                                                <segue destination="b4a-uS-mdE" kind="show" id="UgZ-no-FPk"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="ユーザー" id="mMV-mC-J34">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pgq-Kc-IJv">
-                            <connections>
-                                <segue destination="b4a-uS-mdE" kind="show" id="sIA-v5-fmq"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pgq-Kc-IJv"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="table" destination="LcD-gn-zEA" id="SqH-VP-PB1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwS-AW-dRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -325,7 +371,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-dF-4ig">
-                                <rect key="frame" x="102" y="181" width="116" height="81"/>
+                                <rect key="frame" x="102" y="52" width="116" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="80"/>
                                 <nil key="textColor"/>
@@ -372,6 +418,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeL-CL-o5v">
+                                <rect key="frame" x="33" y="141" width="254" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="61"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.45382863080000002" green="0.73820754440000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -384,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="939.375" y="135.21126760563379"/>
+            <point key="canvasLocation" x="1028" y="136"/>
         </scene>
         <!--Start-->
         <scene sceneID="CJu-TP-JT2">
@@ -433,6 +486,9 @@
                                 <rect key="frame" x="265" y="268" width="39" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="スパナとドライバーで設定アイコンの誕生.png"/>
+                                <connections>
+                                    <action selector="authControl" destination="PhS-5W-2B2" eventType="touchUpInside" id="x8i-M9-g6w"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ログイン" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-Bk-zZU">
                                 <rect key="frame" x="10" y="277" width="247" height="21"/>
@@ -446,6 +502,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Start" id="Ugb-0D-2bR"/>
                     <connections>
+                        <outlet property="stateLabel" destination="rcy-Bk-zZU" id="eCU-8Y-PFW"/>
                         <segue destination="btL-8J-iIs" kind="show" identifier="toLogin" id="4kj-nx-0yq"/>
                         <segue destination="b4a-uS-mdE" kind="show" identifier="toSignin" id="vNO-Dc-cp4"/>
                     </connections>
@@ -483,6 +540,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="a3N-zF-D7q"/>
-        <segue reference="sIA-v5-fmq"/>
+        <segue reference="UgZ-no-FPk"/>
     </inferredMetricsTieBreakers>
 </document>
