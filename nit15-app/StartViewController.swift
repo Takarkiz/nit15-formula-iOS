@@ -31,13 +31,13 @@ class StartViewController: UIViewController {
     //ビューが呼ばれるたびに呼ばれる
     override func viewWillAppear(_ animated: Bool) {
         viewWillAppear(animated)
+        //現在ログインして入るユーザーがいるかどうか判定
         self.getNowLoginUser()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +45,7 @@ class StartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //サインイン画面に行く
+    //サインイン画面に遷移する
     func transitionToSignin(){
         performSegue(withIdentifier: "toSignin", sender: nil)
     }

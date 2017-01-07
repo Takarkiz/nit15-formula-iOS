@@ -62,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRy-cK-Boz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="937.5" y="853.52112676056333"/>
+            <point key="canvasLocation" x="919" y="854"/>
         </scene>
         <!--名前登録-->
         <scene sceneID="Dor-ud-kAZ">
@@ -433,9 +433,6 @@
                                 <rect key="frame" x="265" y="268" width="39" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="スパナとドライバーで設定アイコンの誕生.png"/>
-                                <connections>
-                                    <segue destination="btL-8J-iIs" kind="show" id="ZfO-xt-qD2"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ログイン" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcy-Bk-zZU">
                                 <rect key="frame" x="10" y="277" width="247" height="21"/>
@@ -448,6 +445,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Start" id="Ugb-0D-2bR"/>
+                    <connections>
+                        <segue destination="btL-8J-iIs" kind="show" identifier="toLogin" id="4kj-nx-0yq"/>
+                        <segue destination="b4a-uS-mdE" kind="show" identifier="toSignin" id="vNO-Dc-cp4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oen-Cn-m5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -482,5 +483,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="a3N-zF-D7q"/>
+        <segue reference="sIA-v5-fmq"/>
     </inferredMetricsTieBreakers>
 </document>
