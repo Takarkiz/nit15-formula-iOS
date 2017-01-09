@@ -30,7 +30,7 @@ class StartViewController: UIViewController {
     
     //ビューが呼ばれるたびに呼ばれる
     override func viewWillAppear(_ animated: Bool) {
-        viewWillAppear(animated)
+        super.viewWillAppear(animated)
         //現在ログインして入るユーザーがいるかどうか判定
         self.getNowLoginUser()
     }
