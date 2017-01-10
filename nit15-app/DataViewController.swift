@@ -9,21 +9,32 @@
 import UIKit
 import Firebase
 
-class DataViewController: UIViewController {
+class DataViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+    
+    //フラッグ一覧を表示するcollectionview
+    @IBOutlet var collectionView:UICollectionView!
     
     let ref = FIRDatabase.database().reference()    //FirebaseDatabaseのルートを設定
     var timeState:Int = 0
     var pylonState:Int = 0
+    
+    //コレクションビューで表示するフラッグ画像の配列
+    var flagImage:[UIImage] = [UIImage(named:"チェッカーフラッグのフリーアイコン3.png")!]
     
     //タイマー関連
     //タイマーを初期化
     var timer:Timer = Timer()
     //増える数字
     var count:Float = 0
+    //LabelForTimer
     @IBOutlet var timeLabel:UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //collectionViewのデータベースとデリゲードを宣言
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
     }
     
@@ -33,7 +44,7 @@ class DataViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewWillAppear(animated)
+        super.viewWillAppear(animated)
     }
     
     @IBAction func back(){
@@ -82,6 +93,19 @@ class DataViewController: UIViewController {
         self.ref.child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId().setValue(["time":timeState,"pylon":pylonState])
     }
     
+    //CollectionViewの必須メソッド
+    //セルの数を返す
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! FlagCollectionViewCell
+        
+        cell.imageView.image = flagImage[indexPath.row]
+        
+        return cell
+    }
     
     /*
      // MARK: - Navigation

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class OldDataViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
+class OldDataViewController: UIViewController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,8 @@ class OldDataViewController: UIViewController,UICollectionViewDataSource,UIColle
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
 
     /*
