@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OldDataViewController: UIViewController {
+class OldDataViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
