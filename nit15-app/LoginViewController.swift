@@ -137,8 +137,8 @@ class LoginViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             passArray.remove(at: indexPath.row)
             //セルを削除
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            //Useridを削除
-            self.deleteUserId()
+            //Useridを削除しない
+            //self.deleteUserId()
             //削除したら保存
             defaults.set(nameArray, forKey: "namekey")
             defaults.set(mailArray, forKey: "mailkey")

@@ -34,8 +34,8 @@ class SigninViewController: UIViewController,UITextFieldDelegate {
     }
     
     //サインアップを行う
-    @IBAction func signUp(){
-        
+    @IBAction func signUpStart(){
+        self.signup()
     }
     
     func transitionDetailEdit(){

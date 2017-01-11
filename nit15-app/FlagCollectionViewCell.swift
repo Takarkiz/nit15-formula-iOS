@@ -10,5 +10,5 @@ import UIKit
 
 class FlagCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet var imageView:UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
 }

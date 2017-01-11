@@ -15,6 +15,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     @IBOutlet var collectionView:UICollectionView!
     
     let ref = FIRDatabase.database().reference()    //FirebaseDatabaseのルートを設定
+    //timerとパイロンの初期状態を宣言
     var timeState:Int = 0
     var pylonState:Int = 0
     
@@ -28,6 +29,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     var count:Float = 0
     //LabelForTimer
     @IBOutlet var timeLabel:UILabel!
+    @IBOutlet var pylonCountLabel:UILabel!  //倒したパイロンの数を表示
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +49,20 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         super.viewWillAppear(animated)
     }
     
-    @IBAction func back(){
-        dismiss(animated: true, completion: nil)
-    }
     
     //パイロンボタンを押したとき
     @IBAction func pylon(){
-        if pylonState == 0{
-            pylonState = 1
+        //timerがセットされている時しか動作しない
+        if timeState == 1{
+            pylonState = pylonState + 1
         }else{
+            //時間がセットされていない時
             pylonState = 0
         }
+        //パイロンの個数を表示
+        pylonCountLabel.text = "×\(pylonState)"
+        //パイロンの数を送信
         self.create()
-        
     }
     
     @IBAction func timerWill(){
@@ -68,6 +71,11 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         }else{
             timeState = 0
         }
+        //Firebaseにタイマーがオンになっていることを送信する
+        self.create()
+        //タイマーを作動させる
+        self.timerFunc()
+        
         
     }
     
@@ -81,30 +89,37 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     
     func up(){
-        count = count + 0.01
+        if timeState == 1{
+            count = count + 0.01
+        }
         timeLabel.text = "\(count)s"
     }
     
     //データ送信のメソッド
     func create(){
-        
-        //ローとからログインしているユーザーのIDをchildにしてユーザーデータを作成
+        //ログインしているユーザーのIDをchildにしてユーザーデータを作成
         //childByAutoID()でユーザーIDの下に，IDを自動生成してその中にデータを入れる
-        self.ref.child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId().setValue(["time":timeState,"pylon":pylonState])
+        self.ref.child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId().setValue(["time":timeState,"pylon":pylonState, "date": FIRServerValue.timestamp()])
+        
+        
     }
     
     //CollectionViewの必須メソッド
-    //セルの数を返す
+    //セルの数を返すメソッド
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
-    
+    //セルに表示するものを返すメソッド
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! FlagCollectionViewCell
         
         cell.imageView.image = flagImage[indexPath.row]
         
         return cell
+    }
+    //セルが選択された時の動作
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("\(indexPath.row)が選択")
     }
     
     /*

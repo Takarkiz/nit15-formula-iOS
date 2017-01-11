@@ -53,15 +53,24 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="設定" id="zKz-Yr-FPP">
+                                    <navigationItem title="新規" id="zKz-Yr-FPP">
                                         <barButtonItem key="rightBarButtonItem" title="次へ" id="aUv-RL-No7">
                                             <connections>
-                                                <action selector="signUp" destination="b4a-uS-mdE" id="rbB-4d-f6h"/>
+                                                <action selector="signUpStart" destination="b4a-uS-mdE" id="Znf-JP-obG"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAz-PS-aMr">
+                                <rect key="frame" x="100" y="384" width="120" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <segue destination="aYB-M3-5JI" kind="show" id="mlZ-SE-KuH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.80224609375" green="0.80224609375" blue="0.80224609375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -76,7 +85,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRy-cK-Boz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="980"/>
+            <point key="canvasLocation" x="1065" y="846"/>
+        </scene>
+        <!--Another Login View Controller-->
+        <scene sceneID="SzT-K5-qmA">
+            <objects>
+                <viewController id="aYB-M3-5JI" customClass="AnotherLoginViewController" customModule="nit15_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="37g-94-VWJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="IoO-Mg-OQK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tec-JM-YdF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-79-4go">
+                                <rect key="frame" x="61" y="206" width="198" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bqw-k7-iZ4">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="ログイン" id="xGU-AT-OMT">
+                                        <barButtonItem key="rightBarButtonItem" title="完了" id="85W-2P-bX4">
+                                            <connections>
+                                                <action selector="add" destination="aYB-M3-5JI" id="Bd2-6w-Jic"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MailAdress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6qe-wo-OpF">
+                                <rect key="frame" x="61" y="113" width="198" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="mailTextField" destination="6qe-wo-OpF" id="ykb-Km-CIH"/>
+                        <outlet property="passTextField" destination="MBF-79-4go" id="kvw-23-bBz"/>
+                        <segue destination="PhS-5W-2B2" kind="show" identifier="toStart" id="9Fq-Lh-wEE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nUD-mB-JEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="963.75" y="1527.4647887323945"/>
         </scene>
         <!--名前登録-->
         <scene sceneID="Dor-ud-kAZ">
@@ -108,7 +169,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="sSb-yD-sLv">
+                                    <navigationItem title="ユーザ名" id="sSb-yD-sLv">
                                         <barButtonItem key="rightBarButtonItem" title="完了" id="Ss2-mY-Std">
                                             <connections>
                                                 <action selector="finish" destination="TD0-rW-2Lc" id="vnM-3L-Icn"/>
@@ -125,12 +186,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="gvF-9y-2JC" id="iMm-fT-1JO"/>
-                        <segue destination="PhS-5W-2B2" kind="show" id="a3N-zF-D7q"/>
+                        <segue destination="PhS-5W-2B2" kind="show" identifier="toStart" id="a3N-zF-D7q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i90-fX-wch" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1643" y="992"/>
+            <point key="canvasLocation" x="1646" y="863"/>
         </scene>
         <!--Data View Controller-->
         <scene sceneID="YiK-dt-MsA">
@@ -174,7 +235,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00.00s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ggo-fE-zeO">
-                                <rect key="frame" x="48" y="247" width="224" height="98"/>
+                                <rect key="frame" x="56" y="283" width="224" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="69"/>
                                 <nil key="textColor"/>
@@ -207,36 +268,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMc-yW-RhE">
-                                <rect key="frame" x="0.0" y="20" width="160" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="戻る"/>
-                                <connections>
-                                    <action selector="back" destination="lzv-Fv-PoF" eventType="touchUpInside" id="riT-tT-gjt"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKm-iV-E4h">
-                                <rect key="frame" x="161" y="45" width="159" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.6387290452698553" green="1" blue="0.5231433223253843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="過去データへ"/>
-                                <connections>
-                                    <segue destination="MEl-zo-0hz" kind="show" id="LDN-SA-gce"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vTy-Ob-aaa">
                                 <rect key="frame" x="0.0" y="472" width="323" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6t5-Fd-GKb">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6t5-Fd-GKb">
                                     <size key="itemSize" width="89" height="96"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dCO-4F-xaW">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="dCO-4F-xaW" customClass="FlagCollectionViewCell" customModule="nit15_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -250,14 +293,39 @@
                                             </subviews>
                                         </view>
                                         <size key="customSize" width="96" height="96"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="kfD-av-fBk" id="QtC-tb-0mv"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aie-oe-N9Q">
+                                <rect key="frame" x="1" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="ピット" id="93B-Uz-oIT">
+                                        <barButtonItem key="rightBarButtonItem" title="過去" id="dtF-Fb-dlf">
+                                            <connections>
+                                                <segue destination="MEl-zo-0hz" kind="show" id="jOW-pc-DFv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00.00s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1D-I6-THw">
+                                <rect key="frame" x="77" y="247" width="169" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="4" height="-1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.69722204489999995" blue="0.22394408399999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="vTy-Ob-aaa" id="kXv-sR-dlU"/>
+                        <outlet property="pylonCountLabel" destination="shv-wr-7dV" id="6zB-5H-bIs"/>
                         <outlet property="timeLabel" destination="Ggo-fE-zeO" id="bIn-6Z-Bak"/>
                     </connections>
                 </viewController>
@@ -335,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwS-AW-dRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243.75" y="853.52112676056333"/>
+            <point key="canvasLocation" x="244" y="864"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -448,7 +516,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="データ"/>
                                 <connections>
-                                    <segue destination="lzv-Fv-PoF" kind="show" id="QXc-bN-h41"/>
+                                    <segue destination="lzv-Fv-PoF" kind="show" id="pxK-nL-SkC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgg-Kz-D8V">
@@ -518,7 +586,7 @@
         <image name="電源のアイコン素材.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a3N-zF-D7q"/>
+        <segue reference="9Fq-Lh-wEE"/>
         <segue reference="UgZ-no-FPk"/>
     </inferredMetricsTieBreakers>
 </document>

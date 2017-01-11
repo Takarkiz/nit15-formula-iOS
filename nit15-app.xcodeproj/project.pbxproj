@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24F3C211D91AF75E6C72DF35 /* Pods_nit15_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D725BA5E3C38A9FE387CE3 /* Pods_nit15_app.framework */; };
+		3C1C5CB11E25DCF000BD47EE /* AnotherLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */; };
 		3C3EAB761E1F3F3000838EFD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB751E1F3F3000838EFD /* StartViewController.swift */; };
 		3C3EAB781E1F3F5600838EFD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB771E1F3F5500838EFD /* EditViewController.swift */; };
 		3C3EAB7A1E1F3F6A00838EFD /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		18D725BA5E3C38A9FE387CE3 /* Pods_nit15_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nit15_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nit15_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnotherLoginViewController.swift; sourceTree = "<group>"; };
 		3C3EAB751E1F3F3000838EFD /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		3C3EAB771E1F3F5500838EFD /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3C1C5CB21E25E10600BD47EE /* infoPlist */ = {
+			isa = PBXGroup;
+			children = (
+				3CBD9E901DF2382300285D9C /* Info.plist */,
+				3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */,
+			);
+			name = infoPlist;
+			sourceTree = "<group>";
+		};
 		3C3EAB7F1E1F410400838EFD /* icon_mono */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,15 +184,15 @@
 				3C3EAB771E1F3F5500838EFD /* EditViewController.swift */,
 				3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */,
 				3C3EAB7B1E1F3FDB00838EFD /* LoginViewController.swift */,
+				3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */,
 				3C3EAB7D1E1F3FFC00838EFD /* DataViewController.swift */,
+				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
 				3C3EAB8C1E1F5DAA00838EFD /* OldDataViewController.swift */,
 				3CF0F6151E20DF3600C36960 /* EctViewController.swift */,
-				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
 				3CBD9E881DF2382300285D9C /* Main.storyboard */,
 				3CBD9E8B1DF2382300285D9C /* Assets.xcassets */,
 				3CBD9E8D1DF2382300285D9C /* LaunchScreen.storyboard */,
-				3CBD9E901DF2382300285D9C /* Info.plist */,
-				3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */,
+				3C1C5CB21E25E10600BD47EE /* infoPlist */,
 				3C3EAB7F1E1F410400838EFD /* icon_mono */,
 			);
 			path = "nit15-app";
@@ -515,6 +526,7 @@
 				3C3EAB781E1F3F5600838EFD /* EditViewController.swift in Sources */,
 				3C3EAB7A1E1F3F6A00838EFD /* SigninViewController.swift in Sources */,
 				3CBD9E871DF2382300285D9C /* ViewController.swift in Sources */,
+				3C1C5CB11E25DCF000BD47EE /* AnotherLoginViewController.swift in Sources */,
 				3CBD9E851DF2382300285D9C /* AppDelegate.swift in Sources */,
 				3C3EAB8D1E1F5DAA00838EFD /* OldDataViewController.swift in Sources */,
 				3CF0F6161E20DF3600C36960 /* EctViewController.swift in Sources */,
