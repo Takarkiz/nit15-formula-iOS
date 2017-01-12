@@ -30,6 +30,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //LabelForTimer
     @IBOutlet var timeLabel:UILabel!
     @IBOutlet var pylonCountLabel:UILabel!  //倒したパイロンの数を表示
+    @IBOutlet var lapTimeLabel:UILabel! //ラップタイムを表示
+    @IBOutlet var timerStartButton:UIButton! //ボタン
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //collectionViewのデータベースとデリゲードを宣言
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        timerStartButton.layer.masksToBounds = true //枠を丸く
+        timerStartButton.layer.cornerRadius = 20.0  //枠の半径
         
     }
     
@@ -68,17 +73,21 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     @IBAction func timerWill(){
         if timeState == 0{
             timeState = 1
+            timerStartButton.isHidden = true
         }else{
             timeState = 0
+            timerStartButton.isHidden = false
         }
         //Firebaseにタイマーがオンになっていることを送信する
         self.create()
         //タイマーを作動させる
         self.timerFunc()
         
-        
     }
     
+    //
+    
+    //タイマーのオン・オフ
     func timerFunc(){
         if !timer.isValid{
             //タイマーが作動してなかったら動かす
@@ -97,9 +106,17 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     //データ送信のメソッド
     func create(){
-        //ログインしているユーザーのIDをchildにしてユーザーデータを作成
-        //childByAutoID()でユーザーIDの下に，IDを自動生成してその中にデータを入れる
-        self.ref.child((FIRAuth.auth()?.currentUser?.uid)!).childByAutoId().setValue(["time":timeState,"pylon":pylonState, "date": FIRServerValue.timestamp()])
+        
+        //現在ログインしているユーザーがいるかどうかを判別する
+        if let user = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+            //ログインしているユーザーのIDをchildにしてユーザーデータを作成
+            //childByAutoID()でユーザーIDの下に，IDを自動生成してその中にデータを入れる
+            self.ref.child((user.uid)).childByAutoId().setValue(["time":timeState,"pylon":pylonState, "date": FIRServerValue.timestamp()])
+        } else {
+            //ユーザーがログインしていない場合
+            return
+        }
         
         
     }
