@@ -19,7 +19,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     var timeState:Int = 0
     var pylonState:Int = 0
     
-    //
+    //スワイプのインスタンスを宣言
+    var swipe:UISwipeGestureRecognizer?
     
     //コレクションビューで表示するフラッグ画像の配列
     var flagImage:[UIImage] = [UIImage(named:"チェッカーフラッグのフリーアイコン3.png")!,UIImage(named:"flag-green.jpg")!,UIImage(named:"flag-orangeBall.jpg")!,UIImage(named:"flag-blue.jpg")!,UIImage(named:"flag-yellow.jpg")!,UIImage(named:"flag-red.jpg")!]
@@ -47,27 +48,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        
-        //ボタンの見た目の設定->丸に
-        timerStartButton.layer.masksToBounds = true //枠を丸く
-        timerStartButton.layer.cornerRadius = 40.0  //枠の半径
-        timerStartButton.layer.borderWidth = 4.0
-        timerStartButton.layer.borderColor = UIColor.black.cgColor
-        //ラップボタンに関して
-        rapButton.layer.masksToBounds = true //枠を丸く
-        rapButton.layer.cornerRadius = 40.0  //枠の半径
-        rapButton.layer.borderWidth = 4.0
-        rapButton.layer.borderColor = UIColor.black.cgColor
-        //ストップボタンに関して
-        stopButton.layer.masksToBounds = true //枠を丸く
-        stopButton.layer.cornerRadius = 40.0  //枠の半径
-        stopButton.layer.borderWidth = 4.0
-        stopButton.layer.borderColor = UIColor.black.cgColor
-        
-        //初期画面ではラップとストップボタンを消す
-        rapButton.isHidden = true
-        stopButton.isHidden = true
-        
+        //ボタンの設定
+        self.buttonSetting()
     }
     
     override func didReceiveMemoryWarning() {
@@ -169,6 +151,10 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
     }
     
+    func back(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     //CollectionViewの必須メソッド
     //セルの数を返すメソッド
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -188,14 +174,45 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         print("\(indexPath.row)が選択")
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    
+    
+    //スワイプの設定
+    func swipeSetting(){
+        //インスタンス
+        swipe = UISwipeGestureRecognizer()
+        //スワイプの方向を決める
+        swipe!.direction = .right
+        //スワイプするときの指の本数
+        swipe!.numberOfTouchesRequired = 1
+        //スワイプしたときのアクション
+        swipe!.addTarget(self, action: #selector(DataViewController.back))
+        //viewにスワイプジェスチャーを配置
+        self.view.addGestureRecognizer(swipe!)
+    }
+    
+    
+    func buttonSetting(){
+        //ボタンの見た目の設定->丸に
+        timerStartButton.layer.masksToBounds = true //枠を丸く
+        timerStartButton.layer.cornerRadius = 40.0  //枠の半径
+        timerStartButton.layer.borderWidth = 4.0
+        timerStartButton.layer.borderColor = UIColor.black.cgColor
+        //ラップボタンに関して
+        rapButton.layer.masksToBounds = true //枠を丸く
+        rapButton.layer.cornerRadius = 40.0  //枠の半径
+        rapButton.layer.borderWidth = 4.0
+        rapButton.layer.borderColor = UIColor.black.cgColor
+        //ストップボタンに関して
+        stopButton.layer.masksToBounds = true //枠を丸く
+        stopButton.layer.cornerRadius = 40.0  //枠の半径
+        stopButton.layer.borderWidth = 4.0
+        stopButton.layer.borderColor = UIColor.black.cgColor
+        
+        //初期画面ではラップとストップボタンを消す
+        rapButton.isHidden = true
+        stopButton.isHidden = true
+    }
+    
     
 }

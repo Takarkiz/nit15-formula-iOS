@@ -29,6 +29,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var voltNum:Float!
     var voltArray:[Float]!
     
+    //スワイプのインスタンスを宣言
+    var swipe:UISwipeGestureRecognizer?
     
     //適正値調整用の最大レンジに用いる定数
     let maxShift:Int = 20
@@ -370,6 +372,22 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         // Dispose of any resources that can be recreated.
     }
     
+    //スワイプの設定
+    func swipeSetting(){
+        //インスタンス
+        swipe = UISwipeGestureRecognizer()
+        //スワイプの方向を決める
+        swipe!.direction = .right
+        //スワイプするときの指の本数
+        swipe!.numberOfTouchesRequired = 1
+        //スワイプしたときのアクション
+        swipe!.addTarget(self, action: #selector(ViewController.back))
+        //viewにスワイプジェスチャーを配置
+        self.view.addGestureRecognizer(swipe!)
+    }
     
+    func back(){
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
