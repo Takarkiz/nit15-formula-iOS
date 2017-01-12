@@ -27,11 +27,16 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     var timer:Timer = Timer()
     //増える数字
     var count:Float = 0
+    //ラップタイムを記録する配列
+    var rapTimeArray:[Float] = []
+    
     //LabelForTimer
     @IBOutlet var timeLabel:UILabel!
     @IBOutlet var pylonCountLabel:UILabel!  //倒したパイロンの数を表示
-    @IBOutlet var lapTimeLabel:UILabel! //ラップタイムを表示
+    @IBOutlet var rapTimeLabel:UILabel! //ラップタイムを表示
     @IBOutlet var timerStartButton:UIButton! //ボタン
+    @IBOutlet var rapButton:UIButton!   //ラップする時用のボタン
+    @IBOutlet var stopButton:UIButton!  //ストップする用のボタン
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +45,26 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        
+        //ボタンの見た目の設定->丸に
         timerStartButton.layer.masksToBounds = true //枠を丸く
-        timerStartButton.layer.cornerRadius = 20.0  //枠の半径
+        timerStartButton.layer.cornerRadius = 40.0  //枠の半径
+        timerStartButton.layer.borderWidth = 2.0
+        timerStartButton.layer.borderColor = UIColor.black.cgColor
+        //ラップボタンに関して
+        rapButton.layer.masksToBounds = true //枠を丸く
+        rapButton.layer.cornerRadius = 40.0  //枠の半径
+        rapButton.layer.borderWidth = 2.0
+        rapButton.layer.borderColor = UIColor.black.cgColor
+        //ストップボタンに関して
+        stopButton.layer.masksToBounds = true //枠を丸く
+        stopButton.layer.cornerRadius = 40.0  //枠の半径
+        stopButton.layer.borderWidth = 2.0
+        stopButton.layer.borderColor = UIColor.black.cgColor
+        
+        //初期画面ではラップとストップボタンを消す
+        rapButton.isHidden = true
+        stopButton.isHidden = true
         
     }
     
@@ -71,13 +94,12 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     
     @IBAction func timerWill(){
-        if timeState == 0{
-            timeState = 1
-            timerStartButton.isHidden = true
-        }else{
-            timeState = 0
-            timerStartButton.isHidden = false
-        }
+        
+        timeState = 1
+        timerStartButton.isHidden = true
+        rapButton.isHidden = false
+        stopButton.isHidden = false
+        
         //Firebaseにタイマーがオンになっていることを送信する
         self.create()
         //タイマーを作動させる
@@ -85,23 +107,44 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
     }
     
-    //
+    @IBAction func rapButtonWill(){
+        //現在のcountをラップタイムの配列に入れる
+        rapTimeArray.append(count)
+        //カウントは初期化
+        count = 0
+        //ラップタイムラベルにラップタイムを表示
+        rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
+        
+    }
+    
+    //ストップボタンを押した時
+    @IBAction func stopButtonWill(){
+        //タイムの状態を0に戻す
+        timeState = 0
+        //タイマーを止める
+        timer.invalidate()
+        //ボタンを消す
+        rapButton.isHidden = true
+        stopButton.isHidden = true
+        //ボタンを表示
+        timerStartButton.isHidden = false
+        
+    }
     
     //タイマーのオン・オフ
     func timerFunc(){
         if !timer.isValid{
             //タイマーが作動してなかったら動かす
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
-        }else{
-            timer.invalidate()
         }
     }
     
+    //タイマーの数を繰り上げ，表示する関数
     func up(){
         if timeState == 1{
             count = count + 0.01
         }
-        timeLabel.text = "\(count)s"
+        timeLabel.text = String(format: "%.2fs", count)
     }
     
     //データ送信のメソッド

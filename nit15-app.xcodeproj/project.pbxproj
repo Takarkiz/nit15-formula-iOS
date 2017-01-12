@@ -21,6 +21,7 @@
 		3C3EAB891E1F420300838EFD /* スパナとドライバーで設定アイコンの誕生.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3EAB881E1F420300838EFD /* スパナとドライバーで設定アイコンの誕生.png */; };
 		3C3EAB8B1E1F420B00838EFD /* 電源のアイコン素材.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C3EAB8A1E1F420B00838EFD /* 電源のアイコン素材.png */; };
 		3C3EAB8D1E1F5DAA00838EFD /* OldDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB8C1E1F5DAA00838EFD /* OldDataViewController.swift */; };
+		3C7D72361E27377900FDA615 /* CustomClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7D72351E27377900FDA615 /* CustomClass.swift */; };
 		3C7F84DF1E25347E0064C524 /* FlagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */; };
 		3CBD9E851DF2382300285D9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9E841DF2382300285D9C /* AppDelegate.swift */; };
 		3CBD9E871DF2382300285D9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9E861DF2382300285D9C /* ViewController.swift */; };
@@ -30,7 +31,6 @@
 		3CBD9E9A1DF2382300285D9C /* nit15_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9E991DF2382300285D9C /* nit15_appTests.swift */; };
 		3CBD9EA51DF2382300285D9C /* nit15_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9EA41DF2382300285D9C /* nit15_appUITests.swift */; };
 		3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */; };
-		3CF0F6161E20DF3600C36960 /* EctViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF0F6151E20DF3600C36960 /* EctViewController.swift */; };
 		7D1C1C7D00139ACB496CAD49 /* Pods_nit15_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */; };
 		8C6527C26A89C4A2C09B6E4B /* Pods_nit15_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */; };
 /* End PBXBuildFile section */
@@ -68,6 +68,7 @@
 		3C3EAB881E1F420300838EFD /* スパナとドライバーで設定アイコンの誕生.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "スパナとドライバーで設定アイコンの誕生.png"; sourceTree = "<group>"; };
 		3C3EAB8A1E1F420B00838EFD /* 電源のアイコン素材.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "電源のアイコン素材.png"; sourceTree = "<group>"; };
 		3C3EAB8C1E1F5DAA00838EFD /* OldDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldDataViewController.swift; sourceTree = "<group>"; };
+		3C7D72351E27377900FDA615 /* CustomClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomClass.swift; sourceTree = "<group>"; };
 		3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlagCollectionViewCell.swift; sourceTree = "<group>"; };
 		3CBD9E811DF2382300285D9C /* nit15-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nit15-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBD9E841DF2382300285D9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		3CBD9EA41DF2382300285D9C /* nit15_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nit15_appUITests.swift; sourceTree = "<group>"; };
 		3CBD9EA61DF2382300285D9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3CF0F6151E20DF3600C36960 /* EctViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EctViewController.swift; sourceTree = "<group>"; };
 		41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nit15_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44476B7D7317B2006EA073B4 /* Pods-nit15-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-app/Pods-nit15-app.release.xcconfig"; sourceTree = "<group>"; };
 		84A4CF2CD86F71347509B119 /* Pods-nit15-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				3C3EAB7D1E1F3FFC00838EFD /* DataViewController.swift */,
 				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
 				3C3EAB8C1E1F5DAA00838EFD /* OldDataViewController.swift */,
-				3CF0F6151E20DF3600C36960 /* EctViewController.swift */,
+				3C7D72351E27377900FDA615 /* CustomClass.swift */,
 				3CBD9E881DF2382300285D9C /* Main.storyboard */,
 				3CBD9E8B1DF2382300285D9C /* Assets.xcassets */,
 				3CBD9E8D1DF2382300285D9C /* LaunchScreen.storyboard */,
@@ -528,8 +528,8 @@
 				3CBD9E871DF2382300285D9C /* ViewController.swift in Sources */,
 				3C1C5CB11E25DCF000BD47EE /* AnotherLoginViewController.swift in Sources */,
 				3CBD9E851DF2382300285D9C /* AppDelegate.swift in Sources */,
+				3C7D72361E27377900FDA615 /* CustomClass.swift in Sources */,
 				3C3EAB8D1E1F5DAA00838EFD /* OldDataViewController.swift in Sources */,
-				3CF0F6161E20DF3600C36960 /* EctViewController.swift in Sources */,
 				3C3EAB761E1F3F3000838EFD /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
