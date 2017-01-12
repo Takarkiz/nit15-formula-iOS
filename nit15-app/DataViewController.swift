@@ -50,6 +50,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
         //ボタンの設定
         self.buttonSetting()
+        
+        //ナビゲーションバーを隠す
+        //self.hideTabber()
     }
     
     override func didReceiveMemoryWarning() {
@@ -175,6 +178,13 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     
     
+    func hideTabber(){
+        // ナビバーの表示を切り替える
+        if let nv = navigationController {
+            let hidden = !nv.isNavigationBarHidden
+            nv.setNavigationBarHidden(hidden, animated: true)
+        }
+    }
     
     
     //スワイプの設定

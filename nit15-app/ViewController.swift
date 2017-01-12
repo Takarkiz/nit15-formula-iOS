@@ -40,6 +40,12 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        // ナビバーの表示を切り替える
+//        if let nv = navigationController {
+//            let hidden = !nv.isNavigationBarHidden
+//            nv.setNavigationBarHidden(hidden, animated: true)
+//        }
+        
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
@@ -389,5 +395,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func back(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    //ナビゲーションバーの非表示
+    
 }
 

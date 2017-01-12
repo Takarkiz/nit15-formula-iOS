@@ -27,6 +27,11 @@ class SigninViewController: UIViewController,UITextFieldDelegate {
         passTextField.delegate = self
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+     
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

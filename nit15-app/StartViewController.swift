@@ -68,6 +68,7 @@ class StartViewController: UIViewController {
     func alartAuth(){
         
     }
+    
 
 
 }
