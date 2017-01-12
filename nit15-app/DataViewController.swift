@@ -19,8 +19,10 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     var timeState:Int = 0
     var pylonState:Int = 0
     
+    //
+    
     //コレクションビューで表示するフラッグ画像の配列
-    var flagImage:[UIImage] = [UIImage(named:"チェッカーフラッグのフリーアイコン3.png")!]
+    var flagImage:[UIImage] = [UIImage(named:"チェッカーフラッグのフリーアイコン3.png")!,UIImage(named:"flag-green.jpg")!,UIImage(named:"flag-orangeBall.jpg")!,UIImage(named:"flag-blue.jpg")!,UIImage(named:"flag-yellow.jpg")!,UIImage(named:"flag-red.jpg")!]
     
     //タイマー関連
     //タイマーを初期化
@@ -49,17 +51,17 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //ボタンの見た目の設定->丸に
         timerStartButton.layer.masksToBounds = true //枠を丸く
         timerStartButton.layer.cornerRadius = 40.0  //枠の半径
-        timerStartButton.layer.borderWidth = 2.0
+        timerStartButton.layer.borderWidth = 4.0
         timerStartButton.layer.borderColor = UIColor.black.cgColor
         //ラップボタンに関して
         rapButton.layer.masksToBounds = true //枠を丸く
         rapButton.layer.cornerRadius = 40.0  //枠の半径
-        rapButton.layer.borderWidth = 2.0
+        rapButton.layer.borderWidth = 4.0
         rapButton.layer.borderColor = UIColor.black.cgColor
         //ストップボタンに関して
         stopButton.layer.masksToBounds = true //枠を丸く
         stopButton.layer.cornerRadius = 40.0  //枠の半径
-        stopButton.layer.borderWidth = 2.0
+        stopButton.layer.borderWidth = 4.0
         stopButton.layer.borderColor = UIColor.black.cgColor
         
         //初期画面ではラップとストップボタンを消す
@@ -128,6 +130,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         stopButton.isHidden = true
         //ボタンを表示
         timerStartButton.isHidden = false
+        //countを初期化
+        count = 0
+        timeLabel.text = String(count)
         
     }
     
@@ -167,7 +172,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //CollectionViewの必須メソッド
     //セルの数を返すメソッド
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        
+        return flagImage.count
     }
     //セルに表示するものを返すメソッド
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
