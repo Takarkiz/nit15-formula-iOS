@@ -429,6 +429,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         let item = contentsArray.last
         //itemの中身を辞書型に変換
         let content = item?.value as! Dictionary<String, AnyObject>
+        
+        //timeという添え字で保存していたデータを読む
+        
+        
     }
     
     
