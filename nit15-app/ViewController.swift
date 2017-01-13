@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import Firebase
 
 class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDelegate{
     
@@ -28,6 +29,12 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var waterArray:[Int]!
     var voltNum:Float!
     var voltArray:[Float]!
+    
+    //データベースの設定
+    let ref = FIRDatabase.database().reference()
+    var snap:FIRDataSnapshot!
+    //データを入れる配列
+    var contentsArray:[FIRDataSnapshot] = []
     
     //スワイプのインスタンスを宣言
     var swipe:UISwipeGestureRecognizer?
@@ -77,10 +84,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //ここでは欲しいシリアルのペリフェラルだけを取得
         if peripheral.name == "BLESerial2"{
             
-            //            print("pheripheral.name: \(peripheral.name)")
-            //            print("advertisementData:\(advertisementData)")
-            //            print("RSSI: \(RSSI)")
-            //            print("peripheral.identifier.UUIDString: \(peripheral.identifier.UUIDString)")
             
             var name: NSString? = advertisementData["kCBAdvDataLocalName"] as? NSString
             if (name == nil) {
@@ -158,15 +161,12 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func rpmAnime(x:Int){
         
         if x >= 0 && x <= 9{
-            //            rpmNum == 0{
-            //
-            //            }else if rpmNum  == 0{
-            //
-            //            }
             
             rpmLabel.text = "rpm:\(x)"
         }
     }
+    
+   
     
     //キャラクタリスティックが読み出された時に呼ばれるメソッド
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -390,6 +390,54 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         swipe!.addTarget(self, action: #selector(ViewController.back))
         //viewにスワイプジェスチャーを配置
         self.view.addGestureRecognizer(swipe!)
+    }
+    
+    //フラッグや，タイム，パイロンカウントを受信する
+    func reserve(){
+        //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
+        //今回は，childでrunInfoにアクセスし，ユーザーIDにアクセスする．
+        ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).observe(.value, with:{(snapShots) in
+            if snapShots.children.allObjects is [FIRDataSnapshot]{
+                print("snapShots.children...\(snapShots.childrenCount)")
+                print("snapShot...\(snapShots)")
+                
+                self.snap = snapShots
+            }
+            self.reload(self.snap)
+        })
+    }
+    
+    //読み込んだデータをそれぞれ分ける
+    func reload(_ snap:FIRDataSnapshot){
+        if snap.exists(){
+            print(snap)
+            //FIRDataSnapshotsが存在する確認
+            contentsArray.removeAll()
+            //一つになっているFIRDataSnapshotを分割して入れる
+            for item in snap.children{
+                contentsArray.append(item as! FIRDataSnapshot)
+            }
+            
+            //ローカルのデータベースを更新
+            ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+        }
+    }
+    
+    //出力できるようにする
+    func format(){
+        //アイテムに最終項を代入
+        let item = contentsArray.last
+        //itemの中身を辞書型に変換
+        let content = item?.value as! Dictionary<String, AnyObject>
+    }
+    
+    
+    //日付を得て，フォーマットする
+    func getDate(number:TimeInterval) -> String{
+        let date = Date(timeIntervalSince1970: number)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH/mm/ss"
+        return formatter.string(from: date)
     }
     
     func back(){

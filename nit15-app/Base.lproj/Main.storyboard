@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRy-cK-Boz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1065" y="846"/>
+            <point key="canvasLocation" x="938" y="862"/>
         </scene>
         <!--Another Login View Controller-->
         <scene sceneID="SzT-K5-qmA">
@@ -137,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nUD-mB-JEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="963.75" y="1527.4647887323945"/>
+            <point key="canvasLocation" x="938" y="1542"/>
         </scene>
         <!--名前登録-->
         <scene sceneID="Dor-ud-kAZ">
@@ -418,7 +418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iwS-AW-dRo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="864"/>
+            <point key="canvasLocation" x="244" y="862"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -461,11 +461,6 @@
                                 <rect key="frame" x="61" y="297" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGv-1N-EPM">
-                                <rect key="frame" x="0.0" y="20" width="57" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="電源のアイコン素材.png"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="接続状況" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxn-sg-nJv">
                                 <rect key="frame" x="96" y="539" width="218" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -499,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028" y="136"/>
+            <point key="canvasLocation" x="938" y="137"/>
         </scene>
         <!--Start-->
         <scene sceneID="CJu-TP-JT2">
@@ -598,10 +593,9 @@
         <image name="三角コーンのアイコン素材.png" width="256" height="256"/>
         <image name="水滴アイコン4.png" width="256" height="256"/>
         <image name="電池のアイコン無料素材 その3.png" width="256" height="256"/>
-        <image name="電源のアイコン素材.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UgZ-no-FPk"/>
-        <segue reference="h9W-i2-OJ9"/>
+        <segue reference="9Fq-Lh-wEE"/>
     </inferredMetricsTieBreakers>
 </document>

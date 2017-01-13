@@ -18,6 +18,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //timerとパイロンの初期状態を宣言
     var timeState:Int = 0
     var pylonState:Int = 0
+    var flagState:Int = 0
     
     //スワイプのインスタンスを宣言
     var swipe:UISwipeGestureRecognizer?
@@ -144,16 +145,15 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         if let user = FIRAuth.auth()?.currentUser {
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
-            //childByAutoID()でユーザーIDの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.uid)).childByAutoId().setValue(["time":timeState,"pylon":pylonState, "date": FIRServerValue.timestamp()])
+            //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
+            self.ref.child((user.displayName)!).child("runInfo").childByAutoId().setValue(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
         } else {
             //ユーザーがログインしていない場合
             return
         }
-        
-        
     }
     
+    //戻る
     func back(){
         self.dismiss(animated: true, completion: nil)
     }
@@ -175,6 +175,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //セルが選択された時の動作
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択")
+        flagState = indexPath.row + 1
+        self.create()
     }
     
     
