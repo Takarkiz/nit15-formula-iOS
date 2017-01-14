@@ -20,6 +20,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     @IBOutlet var waterLabel:UILabel!
     @IBOutlet var voltLabel:UILabel!
     @IBOutlet var rpmLabel:UILabel!
+    @IBOutlet var timeLabel:UILabel!
     
     //インスタンスの宣言
     var rpmNum:Int!
@@ -35,6 +36,13 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var snap:FIRDataSnapshot!
     //データを入れる配列
     var contentsArray:[FIRDataSnapshot] = []
+    var timeState:[Int] = []
+    var pylonState:[Int] = []
+    var flagState: [Int] = []
+    //タイマーのインスタンスを呼ぶ
+    var timer:Timer = Timer()
+    var count:Float = 0.0
+    
     
     //スワイプのインスタンスを宣言
     var swipe:UISwipeGestureRecognizer?
@@ -44,14 +52,17 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     let maxTemp:Int = 15
     let maxVolt:Int = 20
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // ナビバーの表示を切り替える
-//        if let nv = navigationController {
-//            let hidden = !nv.isNavigationBarHidden
-//            nv.setNavigationBarHidden(hidden, animated: true)
-//        }
+        //        // ナビバーの表示を切り替える
+        //        if let nv = navigationController {
+        //            let hidden = !nv.isNavigationBarHidden
+        //            nv.setNavigationBarHidden(hidden, animated: true)
+        //        }
         
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
@@ -166,7 +177,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
     }
     
-   
+    
     
     //キャラクタリスティックが読み出された時に呼ばれるメソッド
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -420,21 +431,56 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             
             //ローカルのデータベースを更新
             ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+            self.format()
         }
     }
     
     //出力できるようにする
     func format(){
+        
+        var formattingArray:[Dictionary<String, Int>] = []
         //アイテムに最終項を代入
-        let item = contentsArray.last
-        //itemの中身を辞書型に変換
-        let content = item?.value as! Dictionary<String, AnyObject>
+        for i in contentsArray{
+            let item:FIRDataSnapshot = contentsArray[i].value as! Dictionary<String,Int>
+            formattingArray.append(item) //変換後にformattingArrayに代入
+        }
         
         //timeという添え字で保存していたデータを読む
+//        let timeArray: [String] = testArray.map({dic: [String: AnyObject] -> String in
+//            return dic["name"] as! String
+//        })
+        timeState = formattingArray.map{$0["time"]!}
+        //pylonという添え字で保存したデータを読み込む
+        pylonState = Int(content["pylon"]!)
+        print(pylonState)
+        //flagという添え字で保持したデータを読み込む
+        flagState = Int(content["flag"]!)
+        print(flagState)
         
+        if timeState == 1{
+            self.timerFunc()
+        }else{
+            timer.invalidate()
+        }
         
+        if pylonState == 1{
+            
+        }
     }
     
+    //タイマーのオン・オフ
+    func timerFunc(){
+        if !timer.isValid{
+            //タイマーが作動してなかったら動かす
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
+        }
+    }
+    
+    //タイマーの数を繰り上げ，表示する関数
+    func up(){
+        count = count + 0.01
+        timeLabel.text = String(format: "%.2fs", count)
+    }
     
     //日付を得て，フォーマットする
     func getDate(number:TimeInterval) -> String{
