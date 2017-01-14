@@ -432,41 +432,38 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             //ローカルのデータベースを更新
             ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
             self.format()
+            
+            self.format()
         }
     }
     
     //出力できるようにする
     func format(){
         
-        var formattingArray:[Dictionary<String, Int>] = []
+        var formattingArray:[Dictionary<String, Int>]!
         //アイテムに最終項を代入
-        for i in contentsArray{
-            let item:FIRDataSnapshot = contentsArray[i].value as! Dictionary<String,Int>
-            formattingArray.append(item) //変換後にformattingArrayに代入
+        for i in 0...contentsArray.count{
+            //配列の該当のデータをitemという定数に代入
+            let item = contentsArray[i]
+            //itemの中身を辞書型に変換
+            let content = item.value as! Dictionary<String, Int>
+            //取り出したものを配列に入れる
+            formattingArray.append(content)
         }
         
-        //timeという添え字で保存していたデータを読む
-//        let timeArray: [String] = testArray.map({dic: [String: AnyObject] -> String in
-//            return dic["name"] as! String
-//        })
+        //timeという添え字で保存したデータのみを配列として新たに登録
         timeState = formattingArray.map{$0["time"]!}
-        //pylonという添え字で保存したデータを読み込む
-        pylonState = Int(content["pylon"]!)
+        //pylonという添え字で保存したデータのみを配列として新たに作る
+        pylonState = formattingArray.map{$0["pylon"]!}
         print(pylonState)
         //flagという添え字で保持したデータを読み込む
-        flagState = Int(content["flag"]!)
+        flagState = formattingArray.map{$0["flag"]!}
         print(flagState)
         
-        if timeState == 1{
-            self.timerFunc()
-        }else{
-            timer.invalidate()
-        }
-        
-        if pylonState == 1{
-            
-        }
     }
+    
+    //フォーマットした値に応じた処理
+    
     
     //タイマーのオン・オフ
     func timerFunc(){
@@ -497,4 +494,3 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //ナビゲーションバーの非表示
     
 }
-
