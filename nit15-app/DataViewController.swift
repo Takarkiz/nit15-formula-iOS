@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SystemConfiguration
 
 class DataViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
@@ -201,6 +202,18 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         swipe!.addTarget(self, action: #selector(DataViewController.back))
         //viewにスワイプジェスチャーを配置
         self.view.addGestureRecognizer(swipe!)
+    }
+    
+    //ネットワークに接続しているか確認
+    func checkReachability(host_name:String) -> Bool{
+        let reachability = SCNetworkReachabilityCreateWithName(nil, host_name)!
+        var flags = SCNetworkReachabilityFlags.connectionAutomatic
+        if !SCNetworkReachabilityGetFlags(reachability, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
     
     

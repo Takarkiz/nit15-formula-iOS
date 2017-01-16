@@ -42,7 +42,7 @@ class SigninViewController: UIViewController,UITextFieldDelegate {
     @IBAction func signUpStart(){
         self.signup()
     }
-    
+  
     func transitionDetailEdit(){
         self.performSegue(withIdentifier: "toDetail", sender: nil)
     }

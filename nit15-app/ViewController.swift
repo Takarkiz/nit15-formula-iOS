@@ -19,8 +19,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     @IBOutlet var shiftLabel:UILabel!
     @IBOutlet var waterLabel:UILabel!
     @IBOutlet var voltLabel:UILabel!
-    @IBOutlet var rpmLabel:UILabel!
     @IBOutlet var timeLabel:UILabel!
+    @IBOutlet var altaTimeLabel:UILabel!
     
     //インスタンスの宣言
     var rpmNum:Int!
@@ -42,6 +42,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //タイマーのインスタンスを呼ぶ
     var timer:Timer = Timer()
     var count:Float = 0.0
+    //タイマーの値の一時保存（遅延に使用）
+    var altaCount:Float!
     
     
     //スワイプのインスタンスを宣言
@@ -169,15 +171,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
     }
     
-    func rpmAnime(x:Int){
-        
-        if x >= 0 && x <= 9{
-            
-            rpmLabel.text = "rpm:\(x)"
-        }
-    }
-    
-    
     
     //キャラクタリスティックが読み出された時に呼ばれるメソッド
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -216,7 +209,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     }
                     
                     
-                    self.rpmAnime(x: rpmNum)
+                    //self.rpmAnime(x: rpmNum)
                     shiftLabel.text = String(shiftNum)
                     
                     //水温の場合
@@ -306,9 +299,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
         waterArray.removeAll(keepingCapacity: true)
     }
-    
-    
-    
+   
     //バッテリー電圧の適正所作
     func voltCheck(){
         for i in 0...maxVolt-2{
@@ -318,12 +309,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
         voltArray.removeAll(keepingCapacity: true)
     }
-    
-    
-    
-    
-    
-    
+ 
     
     //Notifyingが開始された時に呼ばれる
     //状況を伝えるメソッド
@@ -350,9 +336,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 //stateLabel.text = String(byte)
                 //            label.text = "\(byte)"
                 stateLabel.text = "接続"
-                
-                
-                
+             
                 if byte >= 200{
                     let rpm:Int = (Int(byte) - 200) / 10
                     print("rpm:\(rpm)")
@@ -453,6 +437,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
         //timeという添え字で保存したデータのみを配列として新たに登録
         timeState = formattingArray.map{$0["time"]!}
+        print(timeState)
         //pylonという添え字で保存したデータのみを配列として新たに作る
         pylonState = formattingArray.map{$0["pylon"]!}
         print(pylonState)
@@ -462,7 +447,20 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
     }
     
-    //フォーマットした値に応じた処理
+    //フォーマットした値に応じたタイマーの処理
+    func timeCheck(){
+        //最終項が1の時
+        if timeState.last == 1 || timeState.last == 0{
+            //タイマースタート
+            self.timerFunc()
+        }else if timeState.last == 2{
+            //ラップタイムが切られたとき,
+            //値を代入して
+            altaCount = count
+            timeLabel.isHighlighted = true
+            altaTimeLabel.text = String(format: "%.2fs", altaCount)
+        }
+    }
     
     
     //タイマーのオン・オフ
@@ -470,6 +468,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         if !timer.isValid{
             //タイマーが作動してなかったら動かす
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
+        }else if timer.isValid && timeState.last == 0{
+            timer.invalidate()
         }
     }
     
@@ -479,18 +479,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         timeLabel.text = String(format: "%.2fs", count)
     }
     
-    //日付を得て，フォーマットする
-    func getDate(number:TimeInterval) -> String{
-        let date = Date(timeIntervalSince1970: number)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH/mm/ss"
-        return formatter.string(from: date)
-    }
-    
     func back(){
         self.dismiss(animated: true, completion: nil)
     }
-    
-    //ナビゲーションバーの非表示
     
 }

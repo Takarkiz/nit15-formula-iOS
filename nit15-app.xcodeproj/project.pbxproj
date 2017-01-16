@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		24F3C211D91AF75E6C72DF35 /* Pods_nit15_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D725BA5E3C38A9FE387CE3 /* Pods_nit15_app.framework */; };
 		3C1C5CB11E25DCF000BD47EE /* AnotherLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */; };
+		3C3606771E2CA9BD00173B30 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3606761E2CA9BD00173B30 /* SystemConfiguration.framework */; };
 		3C3EAB761E1F3F3000838EFD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB751E1F3F3000838EFD /* StartViewController.swift */; };
 		3C3EAB781E1F3F5600838EFD /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB771E1F3F5500838EFD /* EditViewController.swift */; };
 		3C3EAB7A1E1F3F6A00838EFD /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */; };
@@ -61,6 +62,7 @@
 		18D725BA5E3C38A9FE387CE3 /* Pods_nit15_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nit15_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nit15_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnotherLoginViewController.swift; sourceTree = "<group>"; };
+		3C3606761E2CA9BD00173B30 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3C3EAB751E1F3F3000838EFD /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		3C3EAB771E1F3F5500838EFD /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C3606771E2CA9BD00173B30 /* SystemConfiguration.framework in Frameworks */,
 				24F3C211D91AF75E6C72DF35 /* Pods_nit15_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +137,7 @@
 		2144EE7D68AA3E7B45A8834F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3C3606761E2CA9BD00173B30 /* SystemConfiguration.framework */,
 				18D725BA5E3C38A9FE387CE3 /* Pods_nit15_app.framework */,
 				28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */,
 				41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */,

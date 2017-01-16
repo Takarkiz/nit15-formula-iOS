@@ -68,6 +68,7 @@ class LoginViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         return cell!
     }
     
+    
     //セルの数を設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameArray.count
@@ -124,6 +125,10 @@ class LoginViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         performSegue(withIdentifier: "toStart", sender: nil)
     }
     
+    @IBAction func add(){
+        performSegue(withIdentifier: "add", sender: nil)
+    }
+    
     //セルを削除する許可を与えるメソッド
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -160,17 +165,10 @@ class LoginViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         }
     }
     
+    @IBAction func allDelete(){
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+    }
+    
 
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
