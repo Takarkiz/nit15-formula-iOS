@@ -42,6 +42,11 @@ class SigninViewController: UIViewController,UITextFieldDelegate {
     @IBAction func signUpStart(){
         self.signup()
     }
+    
+    //ログイン画面へ
+    @IBAction func tologinTransition(){
+        performSegue(withIdentifier: "login", sender: nil)
+    }
   
     func transitionDetailEdit(){
         self.performSegue(withIdentifier: "toDetail", sender: nil)

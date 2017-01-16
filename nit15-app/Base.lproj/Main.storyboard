@@ -55,7 +55,7 @@
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="ログイン"/>
                                 <connections>
-                                    <segue destination="aYB-M3-5JI" kind="show" identifier="" id="mlZ-SE-KuH"/>
+                                    <action selector="tologinTransition" destination="b4a-uS-mdE" eventType="touchUpInside" id="6r4-eP-qKS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,13 +74,14 @@
                         <outlet property="mailTextField" destination="uwb-yr-y1A" id="fl1-2b-36z"/>
                         <outlet property="passTextField" destination="dsQ-CL-2hu" id="YrT-fK-0Zh"/>
                         <segue destination="TD0-rW-2Lc" kind="show" identifier="toDetail" id="SHF-ig-jvG"/>
+                        <segue destination="aYB-M3-5JI" kind="show" identifier="login" id="DoF-O8-ods"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRy-cK-Boz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="954" y="862"/>
         </scene>
-        <!--Another Login View Controller-->
+        <!--ログイン-->
         <scene sceneID="SzT-K5-qmA">
             <objects>
                 <viewController id="aYB-M3-5JI" customClass="AnotherLoginViewController" customModule="nit15_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -99,19 +100,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bqw-k7-iZ4">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="ログイン" id="xGU-AT-OMT">
-                                        <barButtonItem key="rightBarButtonItem" title="完了" id="85W-2P-bX4">
-                                            <connections>
-                                                <action selector="add" destination="aYB-M3-5JI" id="Bd2-6w-Jic"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MailAdress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6qe-wo-OpF">
                                 <rect key="frame" x="61" y="113" width="198" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -122,6 +110,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="ログイン" id="CRX-6v-mr5">
+                        <barButtonItem key="rightBarButtonItem" title="完了" id="CZA-H6-qcb">
+                            <connections>
+                                <action selector="add" destination="aYB-M3-5JI" id="Bln-yV-tDE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mailTextField" destination="6qe-wo-OpF" id="ykb-Km-CIH"/>
                         <outlet property="passTextField" destination="MBF-79-4go" id="kvw-23-bBz"/>
@@ -130,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nUD-mB-JEC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="1722"/>
+            <point key="canvasLocation" x="953" y="1571"/>
         </scene>
         <!--名前登録-->
         <scene sceneID="Dor-ud-kAZ">
@@ -472,6 +468,7 @@
                     <connections>
                         <outlet property="shiftLabel" destination="gt5-dF-4ig" id="BXa-bH-zu4"/>
                         <outlet property="stateLabel" destination="zxn-sg-nJv" id="xRB-sz-Wh6"/>
+                        <outlet property="timeLabel" destination="KeL-CL-o5v" id="OkR-j5-KRF"/>
                         <outlet property="voltLabel" destination="tj7-H6-3mq" id="CKS-ZY-Gas"/>
                         <outlet property="waterLabel" destination="06g-pG-hce" id="W8O-7h-oxv"/>
                     </connections>
@@ -580,6 +577,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="mpR-Zu-z3m"/>
-        <segue reference="a3N-zF-D7q"/>
+        <segue reference="9Fq-Lh-wEE"/>
     </inferredMetricsTieBreakers>
 </document>

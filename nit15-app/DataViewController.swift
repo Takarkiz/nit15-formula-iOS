@@ -120,6 +120,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //countを初期化
         count = 0
         timeLabel.text = String(count)
+        self.create()
         
     }
     

@@ -68,6 +68,7 @@ class AnotherLoginViewController: UIViewController,UITextFieldDelegate {
         return true
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
