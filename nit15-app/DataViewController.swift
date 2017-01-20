@@ -120,7 +120,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //countを初期化
         count = 0
         timeLabel.text = String(count)
+        //stopボタンが押されたことを通知する
         self.create()
+        
         
     }
     
@@ -129,6 +131,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         if !timer.isValid{
             //タイマーが作動してなかったら動かす
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
+        }else{
+            timer.invalidate()
         }
     }
     
