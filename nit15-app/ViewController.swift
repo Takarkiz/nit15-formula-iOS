@@ -44,6 +44,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var count:Float = 0.0
     //タイマーの値の一時保存（遅延に使用）
     var altaCount:Float!
+    //databaseViewControllerのインスタンスを作成
+    let dataV:DataViewController = DataViewController()
     
     
     //適正値調整用の最大レンジに用いる定数
@@ -60,7 +62,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //            let hidden = !nv.isNavigationBarHidden
         //            nv.setNavigationBarHidden(hidden, animated: true)
         //        }
-        
+        self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
@@ -368,6 +370,20 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.getNewData()
+    }
+    
+    //新たにデータを読み込むメソッド
+    func getNewData(){
+        ref.observe(.childAdded, with: { (snapshot) -> Void in
+            self.contentsArray.append(snapshot)
+            self.database()
+        })
+    }
+    
     //フラッグや，タイム，パイロンカウントを受信する
     func reserve(){
         //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
@@ -382,6 +398,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             self.reload(self.snap)
         })
     }
+    
     
     //読み込んだデータをそれぞれ分ける
     func reload(_ snap:FIRDataSnapshot){
@@ -441,10 +458,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.count = self.count + 2.0
             }
-            //値を代入して
-//            altaCount = count
-//            timeLabel.isHidden = true
-//            altaTimeLabel.text = String(format: "%.2fs", altaCount)
         }
     }
     
