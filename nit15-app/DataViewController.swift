@@ -79,30 +79,42 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //パイロンの個数を表示
         pylonCountLabel.text = "×\(pylonState)"
         //パイロンの数を送信
-        self.create()
+        self.create(wheres: "runinfo")
     }
     
     @IBAction func timerWill(){
-        
+        //作動状態に変更
         timeState = 1
+        //隠して表示
         timerStartButton.isHidden = true
         rapButton.isHidden = false
         stopButton.isHidden = false
         
         //Firebaseにタイマーがオンになっていることを送信する
-        self.create()
+        self.create(wheres: "runinfo")
         //タイマーを作動させる
         self.timerFunc()
         
     }
     
     @IBAction func rapButtonWill(){
+        //タイマーの状態を変更
+        timeState = 2
+        //変更を送信
+        self.create(wheres: "runinfo")
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
         //カウントは初期化
         count = 0
         //ラップタイムラベルにラップタイムを表示
         rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
+        
+        //遅延させて状態を『タイマー作動』にして送信
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.timeState = 1
+            self.count = self.count + 0.1
+            self.create(wheres: "runinfo")
+        }
         
     }
     
@@ -121,12 +133,12 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         count = 0
         timeLabel.text = String(count)
         //stopボタンが押されたことを通知する
-        self.create()
-        
+        self.create(wheres: "runinfo")
+        self.create(wheres: "result")
         
     }
     
-    //タイマーのオン・オフ
+    //タイマーのオン・オフを切り替えるメソッド
     func timerFunc(){
         if !timer.isValid{
             //タイマーが作動してなかったら動かす
@@ -145,14 +157,14 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     
     //データ送信のメソッド
-    func create(){
+    func create(wheres:String){
         
         //現在ログインしているユーザーがいるかどうかを判別する
         if let user = FIRAuth.auth()?.currentUser {
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.displayName)!).child("runInfo").childByAutoId().setValue(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
+            self.ref.child((user.displayName)!).child(wheres).childByAutoId().setValue(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
         } else {
             //ユーザーがログインしていない場合
             return
@@ -182,7 +194,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択")
         flagState = indexPath.row + 1
-        self.create()
+        self.create(wheres: "runinfo")
     }
     
     

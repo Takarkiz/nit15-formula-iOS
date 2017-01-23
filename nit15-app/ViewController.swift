@@ -46,15 +46,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var altaCount:Float!
     
     
-    //スワイプのインスタンスを宣言
-    var swipe:UISwipeGestureRecognizer?
-    
     //適正値調整用の最大レンジに用いる定数
     let maxShift:Int = 20
     let maxTemp:Int = 15
     let maxVolt:Int = 20
-    
-    
     
     
     override func viewDidLoad() {
@@ -373,20 +368,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         // Dispose of any resources that can be recreated.
     }
     
-    //スワイプの設定
-    func swipeSetting(){
-        //インスタンス
-        swipe = UISwipeGestureRecognizer()
-        //スワイプの方向を決める
-        swipe!.direction = .right
-        //スワイプするときの指の本数
-        swipe!.numberOfTouchesRequired = 1
-        //スワイプしたときのアクション
-        swipe!.addTarget(self, action: #selector(ViewController.back))
-        //viewにスワイプジェスチャーを配置
-        self.view.addGestureRecognizer(swipe!)
-    }
-    
     //フラッグや，タイム，パイロンカウントを受信する
     func reserve(){
         //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
@@ -455,10 +436,13 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             self.timerFunc()
         }else if timeState.last == 2{
             //ラップタイムが切られたとき,
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.count = self.count + 2.0
+            }
             //値を代入して
-            altaCount = count
-            timeLabel.isHighlighted = true
-            altaTimeLabel.text = String(format: "%.2fs", altaCount)
+//            altaCount = count
+//            timeLabel.isHidden = true
+//            altaTimeLabel.text = String(format: "%.2fs", altaCount)
         }
     }
     
