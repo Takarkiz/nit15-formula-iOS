@@ -79,7 +79,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //パイロンの個数を表示
         pylonCountLabel.text = "×\(pylonState)"
         //パイロンの数を送信
-        self.create(wheres: "runinfo")
+        self.create(wheres: "runinfo",timeState: timeState)
     }
     
     @IBAction func timerWill(){
@@ -91,7 +91,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         stopButton.isHidden = false
         
         //Firebaseにタイマーがオンになっていることを送信する
-        self.create(wheres: "runinfo")
+        self.create(wheres: "runinfo",timeState: timeState)
         //タイマーを作動させる
         self.timerFunc()
         
@@ -101,7 +101,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //タイマーの状態を変更
         timeState = 2
         //変更を送信
-        self.create(wheres: "runinfo")
+        self.create(wheres: "runinfo",timeState: timeState)
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
         //カウントは初期化
@@ -113,7 +113,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.timeState = 1
             self.count = self.count + 0.1
-            self.create(wheres: "runinfo")
+            self.create(wheres: "runinfo",timeState: self.timeState)
         }
         
     }
@@ -133,8 +133,8 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         count = 0
         timeLabel.text = String(count)
         //stopボタンが押されたことを通知する
-        self.create(wheres: "runinfo")
-        self.create(wheres: "result")
+        self.create(wheres: "runinfo",timeState: timeState)
+        self.finish()
         
     }
     
@@ -157,7 +157,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     
     //データ送信のメソッド
-    func create(wheres:String){
+    func create(wheres:String,timeState:Int){
         
         //現在ログインしているユーザーがいるかどうかを判別する
         if let user = FIRAuth.auth()?.currentUser {
@@ -165,6 +165,21 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
             self.ref.child((user.displayName)!).child(wheres).childByAutoId().setValue(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
+        } else {
+            //ユーザーがログインしていない場合
+            return
+        }
+    }
+    
+    //データ送信のメソッド，結果用
+    func finish(){
+        
+        //現在ログインしているユーザーがいるかどうかを判別する
+        if let user = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+            //ログインしているユーザーのIDをchildにしてユーザーデータを作成
+            //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
+            self.ref.child((user.displayName)!).child("finish").childByAutoId().setValue(["time":rapTimeArray, "date": FIRServerValue.timestamp()])
         } else {
             //ユーザーがログインしていない場合
             return
@@ -194,7 +209,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択")
         flagState = indexPath.row + 1
-        self.create(wheres: "runinfo")
+        self.create(wheres: "runinfo",timeState: timeState)
     }
     
     

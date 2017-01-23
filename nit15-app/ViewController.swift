@@ -394,12 +394,14 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 contentsArray.append(item as! FIRDataSnapshot)
             }
             
-            //ローカルのデータベースを更新
-            ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
-            self.format()
-            
-            self.format()
+            self.database()
         }
+    }
+    
+    func database(){
+        //ローカルのデータベースを更新
+        ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+        self.format()
     }
     
     //出力できるようにする
