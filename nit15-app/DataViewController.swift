@@ -101,7 +101,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //タイマーの状態を変更
         timeState = 2
         //変更を送信
-        self.create(wheres: "runinfo",timeState: timeState)
+        self.create(wheres: "runinfo",timeState: 2)
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
         //カウントは初期化
@@ -110,9 +110,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
         
         //遅延させて状態を『タイマー作動』にして送信
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.timeState = 1
-            self.count = self.count + 0.1
+            self.count = self.count + 0.5
             self.create(wheres: "runinfo",timeState: self.timeState)
         }
         

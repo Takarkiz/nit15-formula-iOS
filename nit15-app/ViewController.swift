@@ -20,7 +20,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     @IBOutlet var waterLabel:UILabel!
     @IBOutlet var voltLabel:UILabel!
     @IBOutlet var timeLabel:UILabel!
-    @IBOutlet var altaTimeLabel:UILabel!
+    //@IBOutlet var altaTimeLabel:UILabel!
     
     //インスタンスの宣言
     var rpmNum:Int!
@@ -48,7 +48,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     let dataV:DataViewController = DataViewController()
     //フラッグとパイロンを表示するImageView
     @IBOutlet var alartImageView:UIImageView!
-    @IBOutlet var pylonLabel:UILabel!
+    //@IBOutlet var pylonLabel:UILabel!
     
     
     
@@ -66,7 +66,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //            let hidden = !nv.isNavigationBarHidden
         //            nv.setNavigationBarHidden(hidden, animated: true)
         //        }
-        
+        alartImageView.isHidden = true
         self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
@@ -378,7 +378,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.getNewData()
     }
     
     //新たにデータを読み込むメソッド
@@ -389,7 +388,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         })
         
         //ローカルのデータベースを更新
-        ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
         self.format()
         
         
@@ -399,7 +398,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func reserve(){
         //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
         //今回は，childでrunInfoにアクセスし，ユーザーIDにアクセスする．
-        ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).observe(.value, with:{(snapShots) in
+        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.value, with:{(snapShots) in
             if snapShots.children.allObjects is [FIRDataSnapshot]{
                 print("snapShots.children...\(snapShots.childrenCount)")
                 print("snapShot...\(snapShots)")
@@ -423,7 +422,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             }
             
             //ローカルのデータベースを更新
-            ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+            ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
             self.format()
         }
     }
@@ -492,14 +491,14 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //パイロンタッチを認識した時の処理
     func pylonTouch(){
         //数を表示
-        pylonLabel.text = String(pylonState.last!)
+        //pylonLabel.text = String(pylonState.last!)
         alartImageView.isHidden = false
         alartImageView.image = UIImage(named:"red-corn.png")
         
         //遅延動作
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.count = self.count + 2.0
-            alartImageView.isHidden = true
+            self.alartImageView.isHidden = true
         }
 
     }
