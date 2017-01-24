@@ -39,6 +39,8 @@
 		3CBD9E8F1DF2382300285D9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CBD9E8D1DF2382300285D9C /* LaunchScreen.storyboard */; };
 		3CBD9E9A1DF2382300285D9C /* nit15_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9E991DF2382300285D9C /* nit15_appTests.swift */; };
 		3CBD9EA51DF2382300285D9C /* nit15_appUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9EA41DF2382300285D9C /* nit15_appUITests.swift */; };
+		3CBDD5A21E3736E100204BDC /* flag-black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3CBDD5A11E3736E100204BDC /* flag-black.jpg */; };
+		3CBDD5A41E37500A00204BDC /* red-corn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CBDD5A31E37500A00204BDC /* red-corn.png */; };
 		3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */; };
 		7D1C1C7D00139ACB496CAD49 /* Pods_nit15_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */; };
 		8C6527C26A89C4A2C09B6E4B /* Pods_nit15_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */; };
@@ -101,6 +103,8 @@
 		3CBD9EA01DF2382300285D9C /* nit15-appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nit15-appUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBD9EA41DF2382300285D9C /* nit15_appUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nit15_appUITests.swift; sourceTree = "<group>"; };
 		3CBD9EA61DF2382300285D9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CBDD5A11E3736E100204BDC /* flag-black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "flag-black.jpg"; sourceTree = "<group>"; };
+		3CBDD5A31E37500A00204BDC /* red-corn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red-corn.png"; sourceTree = "<group>"; };
 		3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nit15_appUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44476B7D7317B2006EA073B4 /* Pods-nit15-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-app/Pods-nit15-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				3C3EAB831E1F410400838EFD /* 電池のアイコン無料素材 その3.png */,
 				3C3EAB881E1F420300838EFD /* スパナとドライバーで設定アイコンの誕生.png */,
 				3C3EAB8A1E1F420B00838EFD /* 電源のアイコン素材.png */,
+				3CBDD5A31E37500A00204BDC /* red-corn.png */,
 			);
 			path = icon_mono;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 		3C7D72371E276F2D00FDA615 /* Flag */ = {
 			isa = PBXGroup;
 			children = (
+				3CBDD5A11E3736E100204BDC /* flag-black.jpg */,
 				3C7D72381E276F5E00FDA615 /* flag-green.jpg */,
 				3C7D72391E276F5F00FDA615 /* flag-orangeBall.jpg */,
 				3C7D723A1E276F5F00FDA615 /* flag-blue.jpg */,
@@ -396,6 +402,7 @@
 				3C7D723E1E276F5F00FDA615 /* flag-orangeBall.jpg in Resources */,
 				3C3EAB8B1E1F420B00838EFD /* 電源のアイコン素材.png in Resources */,
 				3C3EAB891E1F420300838EFD /* スパナとドライバーで設定アイコンの誕生.png in Resources */,
+				3CBDD5A21E3736E100204BDC /* flag-black.jpg in Resources */,
 				3C3EAB871E1F410400838EFD /* 電池のアイコン無料素材 その3.png in Resources */,
 				3C3EAB861E1F410400838EFD /* 水滴アイコン4.png in Resources */,
 				3C36067E1E2CC37A00173B30 /* Default-736h@3x.png in Resources */,
@@ -409,6 +416,7 @@
 				3C36067D1E2CC37A00173B30 /* Default-667h@2x.png in Resources */,
 				3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */,
 				3C36067C1E2CC37A00173B30 /* Default-568h@2x.png in Resources */,
+				3CBDD5A41E37500A00204BDC /* red-corn.png in Resources */,
 				3CBD9E8C1DF2382300285D9C /* Assets.xcassets in Resources */,
 				3CBD9E8A1DF2382300285D9C /* Main.storyboard in Resources */,
 			);

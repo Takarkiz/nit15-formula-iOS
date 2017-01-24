@@ -19,13 +19,13 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //timerとパイロンの初期状態を宣言
     var timeState:Int = 0
     var pylonState:Int = 0
-    var flagState:Int = 0
+    var flagState:Int = 99
     
     //スワイプのインスタンスを宣言
     var swipe:UISwipeGestureRecognizer?
     
     //コレクションビューで表示するフラッグ画像の配列
-    var flagImage:[UIImage] = [UIImage(named:"チェッカーフラッグのフリーアイコン3.png")!,UIImage(named:"flag-green.jpg")!,UIImage(named:"flag-orangeBall.jpg")!,UIImage(named:"flag-blue.jpg")!,UIImage(named:"flag-yellow.jpg")!,UIImage(named:"flag-red.jpg")!]
+    var flagImage:[UIImage] = [UIImage(named:"チェッカーフラッグのフリーアイコン3.png")!,UIImage(named:"flag-green.jpg")!,UIImage(named:"flag-orangeBall.jpg")!,UIImage(named:"flag-blue.jpg")!,UIImage(named:"flag-yellow.jpg")!,UIImage(named:"flag-red.jpg")!,UIImage(named:"flag-black.jpg")!]
     
     //タイマー関連
     //タイマーを初期化
@@ -194,7 +194,6 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //CollectionViewの必須メソッド
     //セルの数を返すメソッド
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return flagImage.count
     }
     //セルに表示するものを返すメソッド
@@ -205,36 +204,14 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
         return cell
     }
+    
     //セルが選択された時の動作
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択")
-        flagState = indexPath.row + 1
+        flagState = indexPath.row
         self.create(wheres: "runinfo",timeState: timeState)
     }
     
-    
-    func hideTabber(){
-        // ナビバーの表示を切り替える
-        if let nv = navigationController {
-            let hidden = !nv.isNavigationBarHidden
-            nv.setNavigationBarHidden(hidden, animated: true)
-        }
-    }
-    
-    
-//    //スワイプの設定
-//    func swipeSetting(){
-//        //インスタンス
-//        swipe = UISwipeGestureRecognizer()
-//        //スワイプの方向を決める
-//        swipe!.direction = .right
-//        //スワイプするときの指の本数
-//        swipe!.numberOfTouchesRequired = 1
-//        //スワイプしたときのアクション
-//        swipe!.addTarget(self, action: #selector(DataViewController.back))
-//        //viewにスワイプジェスチャーを配置
-//        self.view.addGestureRecognizer(swipe!)
-//    }
     
     //ネットワークに接続しているか確認
     func checkReachability(host_name:String) -> Bool{

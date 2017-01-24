@@ -46,6 +46,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var altaCount:Float!
     //databaseViewControllerのインスタンスを作成
     let dataV:DataViewController = DataViewController()
+    //フラッグとパイロンを表示するImageView
+    @IBOutlet var alartImageView:UIImageView!
+    @IBOutlet var pylonLabel:UILabel!
+    
     
     
     //適正値調整用の最大レンジに用いる定数
@@ -62,6 +66,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //            let hidden = !nv.isNavigationBarHidden
         //            nv.setNavigationBarHidden(hidden, animated: true)
         //        }
+        
         self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
@@ -296,7 +301,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
         waterArray.removeAll(keepingCapacity: true)
     }
-   
+    
     //バッテリー電圧の適正所作
     func voltCheck(){
         for i in 0...maxVolt-2{
@@ -306,7 +311,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
         voltArray.removeAll(keepingCapacity: true)
     }
- 
+    
     
     //Notifyingが開始された時に呼ばれる
     //状況を伝えるメソッド
@@ -333,7 +338,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 //stateLabel.text = String(byte)
                 //            label.text = "\(byte)"
                 stateLabel.text = "接続"
-             
+                
                 if byte >= 200{
                     let rpm:Int = (Int(byte) - 200) / 10
                     print("rpm:\(rpm)")
@@ -380,8 +385,14 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func getNewData(){
         ref.observe(.childAdded, with: { (snapshot) -> Void in
             self.contentsArray.append(snapshot)
-            self.database()
+            
         })
+        
+        //ローカルのデータベースを更新
+        ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+        self.format()
+        
+        
     }
     
     //フラッグや，タイム，パイロンカウントを受信する
@@ -411,15 +422,12 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 contentsArray.append(item as! FIRDataSnapshot)
             }
             
-            self.database()
+            //ローカルのデータベースを更新
+            ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
+            self.format()
         }
     }
     
-    func database(){
-        //ローカルのデータベースを更新
-        ref.child("runInfo").child((FIRAuth.auth()?.currentUser?.displayName)!).keepSynced(true)
-        self.format()
-    }
     
     //出力できるようにする
     func format(){
@@ -438,12 +446,15 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //timeという添え字で保存したデータのみを配列として新たに登録
         timeState = formattingArray.map{$0["time"]!}
         print(timeState)
+        self.timeCheck()
         //pylonという添え字で保存したデータのみを配列として新たに作る
         pylonState = formattingArray.map{$0["pylon"]!}
         print(pylonState)
+        
         //flagという添え字で保持したデータを読み込む
         flagState = formattingArray.map{$0["flag"]!}
         print(flagState)
+        self.flagView()
         
     }
     
@@ -476,6 +487,33 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func up(){
         count = count + 0.01
         timeLabel.text = String(format: "%.2fs", count)
+    }
+    
+    //パイロンタッチを認識した時の処理
+    func pylonTouch(){
+        //数を表示
+        pylonLabel.text = String(pylonState.last!)
+        alartImageView.isHidden = false
+        alartImageView.image = UIImage(named:"red-corn.png")
+        
+        //遅延動作
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.count = self.count + 2.0
+            alartImageView.isHidden = true
+        }
+
+    }
+    
+    //フラッグが出ている時の処理
+    func flagView(){
+        //イメージを宣言
+        var flagImage = dataV.flagImage
+        if flagState.last! == 6{
+            alartImageView.isHidden = true
+        }else{
+            alartImageView.isHidden = false
+            alartImageView.image = flagImage[flagState.last!]
+        }
     }
     
     func back(){
