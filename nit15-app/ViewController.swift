@@ -36,9 +36,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var snap:FIRDataSnapshot!
     //データを入れる配列
     var contentsArray:[FIRDataSnapshot] = []
-    var timeState:[Int] = []
-    var pylonState:[Int] = []
-    var flagState: [Int] = []
+    var timeState:[Int]!
+    var pylonState:[Int]!
+    var flagState: [Int]!
     //タイマーのインスタンスを呼ぶ
     var timer:Timer = Timer()
     var count:Float = 0.0
@@ -238,9 +238,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
     }
     
-    
-    
-    
     //シフポジの適正所作
     //シフトに値が入るたびに呼ばれる
     func shiftCheck(){
@@ -423,6 +420,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             
             //ローカルのデータベースを更新
             ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
+            //print("ローカルへの更新完了")
             self.format()
         }
     }
@@ -431,9 +429,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //出力できるようにする
     func format(){
         
-        var formattingArray:[Dictionary<String, Int>]!
+        var formattingArray:[Dictionary<String, Int>] = []
         //アイテムに最終項を代入
-        for i in 0...contentsArray.count{
+        for i in 0...contentsArray.count-1{
             //配列の該当のデータをitemという定数に代入
             let item = contentsArray[i]
             //itemの中身を辞書型に変換
@@ -441,7 +439,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             //取り出したものを配列に入れる
             formattingArray.append(content)
         }
-        
         //timeという添え字で保存したデータのみを配列として新たに登録
         timeState = formattingArray.map{$0["time"]!}
         print(timeState)
@@ -449,9 +446,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //pylonという添え字で保存したデータのみを配列として新たに作る
         pylonState = formattingArray.map{$0["pylon"]!}
         print(pylonState)
-        
+        self.pylonTouch()
         //flagという添え字で保持したデータを読み込む
-        flagState = formattingArray.map{$0["flag"]!}
+        flagState =  formattingArray.map{$0["flag"]!}
         print(flagState)
         self.flagView()
         
@@ -460,10 +457,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //フォーマットした値に応じたタイマーの処理
     func timeCheck(){
         //最終項が1の時
-        if timeState.last == 1 || timeState.last == 0{
+        if timeState.last! == 1 || timeState.last! == 0{
             //タイマースタート
             self.timerFunc()
-        }else if timeState.last == 2{
+        }else if timeState.last! == 2{
             //ラップタイムが切られたとき,
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 self.count = self.count + 2.0
@@ -474,7 +471,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     //タイマーのオン・オフ
     func timerFunc(){
-        if !timer.isValid{
+        if !timer.isValid && timeState.last == 1{
             //タイマーが作動してなかったら動かす
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
         }else if timer.isValid && timeState.last == 0{
@@ -492,15 +489,17 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func pylonTouch(){
         //数を表示
         //pylonLabel.text = String(pylonState.last!)
-        alartImageView.isHidden = false
-        alartImageView.image = UIImage(named:"red-corn.png")
-        
-        //遅延動作
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.count = self.count + 2.0
-            self.alartImageView.isHidden = true
+        if pylonState.last! >= 1{
+            alartImageView.image = UIImage(named:"red-corn.png")
+            alartImageView.isHidden = false
+            
+            //遅延動作
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.count = self.count + 2.0
+                self.alartImageView.isHidden = true
+            }
         }
-
+        
     }
     
     //フラッグが出ている時の処理
@@ -510,8 +509,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         if flagState.last! == 6{
             alartImageView.isHidden = true
         }else{
-            alartImageView.isHidden = false
             alartImageView.image = flagImage[flagState.last!]
+            alartImageView.isHidden = false
+            
         }
     }
     
