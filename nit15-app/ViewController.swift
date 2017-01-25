@@ -99,15 +99,13 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //ここでは欲しいシリアルのペリフェラルだけを取得
         if peripheral.name == "BLESerial2"{
             
-            
             var name: NSString? = advertisementData["kCBAdvDataLocalName"] as? NSString
             if (name == nil) {
                 name = "no name";
-                
             }
             
             self.peripheral = peripheral
-            
+          
             //BLEデバイスが検出された時にペリフェラルの接続を開始する
             self.centralManager.connect(self.peripheral, options:nil)
         }else{
@@ -379,14 +377,12 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     //新たにデータを読み込むメソッド
     func getNewData(){
-        ref.observe(.childAdded, with: { (snapshot) -> Void in
+        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.childAdded, with: {(snapshot) in
             self.contentsArray.append(snapshot)
-            
+            //ローカルのデータベースを更新
+            self.ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
+            self.format()
         })
-        
-        //ローカルのデータベースを更新
-        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
-        self.format()
         
         
     }

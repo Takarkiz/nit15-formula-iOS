@@ -165,7 +165,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.displayName)!).child(wheres).childByAutoId().setValue(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
+            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
         } else {
             //ユーザーがログインしていない場合
             return
