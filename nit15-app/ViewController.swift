@@ -441,17 +441,19 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
         //timeという添え字で保存したデータのみを配列として新たに登録
         timeState = formattingArray.map{$0["time"]!}
-        print(timeState)
+        print("timeState\(timeState)")
         self.timeCheck()
         //pylonという添え字で保存したデータのみを配列として新たに作る
         pylonState = formattingArray.map{$0["pylon"]!}
-        print(pylonState)
+        print("pylonState\(pylonState)")
         self.pylonTouch()
         //flagという添え字で保持したデータを読み込む
         flagState =  formattingArray.map{$0["flag"]!}
-        print(flagState)
+        print("flagState:\(flagState)")
         self.flagView()
         
+        print("受信完了")
+        self.getNewData()
     }
     
     //フォーマットした値に応じたタイマーの処理
@@ -506,12 +508,11 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func flagView(){
         //イメージを宣言
         var flagImage = dataV.flagImage
-        if flagState.last! == 6{
+        if flagState.last! == 99{
             alartImageView.isHidden = true
         }else{
             alartImageView.image = flagImage[flagState.last!]
             alartImageView.isHidden = false
-            
         }
     }
     

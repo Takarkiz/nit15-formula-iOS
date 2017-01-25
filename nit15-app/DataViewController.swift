@@ -104,17 +104,18 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         self.create(wheres: "runinfo",timeState: 2)
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
-        //カウントは初期化
-        count = 0
-        //ラップタイムラベルにラップタイムを表示
-        rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
-        
         //遅延させて状態を『タイマー作動』にして送信
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.timeState = 1
             self.count = self.count + 0.5
             self.create(wheres: "runinfo",timeState: self.timeState)
         }
+        //カウントは初期化
+        count = 0
+        //ラップタイムラベルにラップタイムを表示
+        rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
+        
+        
         
     }
     
