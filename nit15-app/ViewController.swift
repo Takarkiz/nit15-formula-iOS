@@ -426,7 +426,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func format(){
         
         var formattingArray:[Dictionary<String, Int>] = []
-        //アイテムに最終項を代入
+        //アイテムに最終項を代入//
         for i in 0...contentsArray.count-1{
             //配列の該当のデータをitemという定数に代入
             let item = contentsArray[i]
