@@ -12,8 +12,9 @@ import Firebase
 
 class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDelegate{
     
-    var centralManager:CBCentralManager!
-    var peripheral:CBPeripheral!
+    public var centralManager:CBCentralManager!
+    public var peripheral:CBPeripheral!
+
     
     @IBOutlet var stateLabel:UILabel!
     @IBOutlet var shiftLabel:UILabel!
@@ -51,7 +52,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //@IBOutlet var pylonLabel:UILabel!
     
     
-    
     //適正値調整用の最大レンジに用いる定数
     let maxShift:Int = 20
     let maxTemp:Int = 15
@@ -69,6 +69,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         alartImageView.isHidden = true
         self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -184,7 +185,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             
             //1バイト取り出す
             characteristic.value?.copyBytes(to: &byte, count:1)
-            
             
             print("byte:\(byte)")
             //byteLabel.text = String(byte)
@@ -393,8 +393,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //今回は，childでrunInfoにアクセスし，ユーザーIDにアクセスする．
         ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.value, with:{(snapShots) in
             if snapShots.children.allObjects is [FIRDataSnapshot]{
-                print("snapShots.children...\(snapShots.childrenCount)")
-                print("snapShot...\(snapShots)")
+                //print("snapShots.children...\(snapShots.childrenCount)")
+                //print("snapShot...\(snapShots)")
                 
                 self.snap = snapShots
             }
