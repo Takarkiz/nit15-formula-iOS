@@ -216,7 +216,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 }else if byte >= 0 && byte <= 120{
                     waterNum = Int(byte)
                     print("水温:\(waterNum)℃")
-                    waterLabel.text = Int(waterNum)
+                    waterLabel.text = "\(waterNum)℃"
                     
                     
                 }else if byte >= 120 && byte <= 150{
@@ -298,7 +298,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func voltCheck(){
         for i in 0...maxVolt-2{
             if voltArray[i+1] - voltArray[i] <= 0.5 && voltArray[i+1] - voltArray[i] >= -0.5{
-                voltLabel.text = String(voltArray[i+1])
+//                voltLabel.text = String(voltArray[i+1])
+                voltLabel.text = "\(voltArray[i+1])V"
             }
         }
         voltArray.removeAll(keepingCapacity: true)
@@ -348,11 +349,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     print("水温:\(water)")
                     waterLabel.text = String(water)
                     
-                    if water > 100{
-                        self.view.backgroundColor = UIColor.red
-                    }else{
-                        self.view.backgroundColor = UIColor.black
-                    }
+                    
                 }else if byte >= 120 && byte <= 150{
                     let volt:Float = Float(byte) / 10
                     print("電圧:\(volt)")
