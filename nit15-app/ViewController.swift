@@ -67,7 +67,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //            nv.setNavigationBarHidden(hidden, animated: true)
         //        }
         alartImageView.isHidden = true
-        self.reserve()
+        //self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         
     }
@@ -216,10 +216,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 }else if byte >= 0 && byte <= 120{
                     waterNum = Int(byte)
                     print("水温:\(waterNum)℃")
-                    waterArray.append(waterNum)
-                    if waterArray.count >= maxTemp{
-                        self.waterTempCheck()
-                    }
+                    waterLabel.text = Int(waterNum)
                     
                     
                 }else if byte >= 120 && byte <= 150{
@@ -314,7 +311,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         
         if error != nil{
-            print("Notify状態更新失敗...error:\(error)")
+            print("Notify状態更新失敗...error:\(String(describing: error))")
             stateLabel.text = "更新不可"
             
         }else{
@@ -342,7 +339,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     let shift:Int = Int(byte) - 200 - rpm
                     print("シフト:\(shift)")
                     shiftLabel.text = String(shift)
-                    if shift == 6{
+                    if shift == 0{
                         shiftLabel.text = "N"
                     }
                     
@@ -375,6 +372,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
     }
     
+    //一旦ここはコメントアウト
+    /*
+     
+     
     //新たにデータを読み込むメソッド
     func getNewData(){
         ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.childAdded, with: {(snapshot) in
@@ -386,6 +387,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
         
     }
+    
+
     
     //フラッグや，タイム，パイロンカウントを受信する
     func reserve(){
@@ -515,5 +518,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func back(){
         self.dismiss(animated: true, completion: nil)
     }
+ 
+ */
     
 }

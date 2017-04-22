@@ -114,7 +114,7 @@ class LoginViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     
     func selectedRow(num:IndexPath){
         //現在ログインしているアカウントからログアウトする処理を行う
-        self.getNowLoginUser()
+        //self.getNowLoginUser()
         //選択したセルのアカウントにログインする
         self.login(email: mailArray[num.row], password: passArray[num.row])
         

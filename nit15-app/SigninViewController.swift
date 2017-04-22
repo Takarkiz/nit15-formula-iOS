@@ -75,7 +75,7 @@ class SigninViewController: UIViewController,UITextFieldDelegate {
                 //そのままログインも行う
                 self.login()
             }else{
-                print("\(error?.localizedDescription)")
+                print("\(String(describing: error?.localizedDescription))")
             }
         })
     }

@@ -57,7 +57,7 @@ class StartViewController: UIViewController {
     
     //ユーザー画面に行く際に保存されたユーザーがいるかどうかで，遷移先を変える
     @IBAction func authControl(){
-        if let user = defaults.object(forKey: "namekey"){
+        if defaults.object(forKey: "namekey") != nil{
             self.transitionToLogin()
         }else{
             self.transitionToSignin()
