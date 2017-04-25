@@ -44,6 +44,7 @@
 		3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */; };
 		7D1C1C7D00139ACB496CAD49 /* Pods_nit15_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */; };
 		8C6527C26A89C4A2C09B6E4B /* Pods_nit15_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */; };
+		AE7AC4271EAEFC7C00374926 /* oil.png in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC4261EAEFC7C00374926 /* oil.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		44476B7D7317B2006EA073B4 /* Pods-nit15-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-app/Pods-nit15-app.release.xcconfig"; sourceTree = "<group>"; };
 		84A4CF2CD86F71347509B119 /* Pods-nit15-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E7F0CABC56167A9ABDB3FB4 /* Pods-nit15-appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AE7AC4261EAEFC7C00374926 /* oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil.png; sourceTree = "<group>"; };
 		B01BCF8FD4FF638579008893 /* Pods-nit15-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appTests/Pods-nit15-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		E2867F48BC43E5342137AE61 /* Pods-nit15-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appTests/Pods-nit15-appTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA2763FE87FBFD4276AA4FFE /* Pods-nit15-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-app/Pods-nit15-app.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		3C3EAB7F1E1F410400838EFD /* icon_mono */ = {
 			isa = PBXGroup;
 			children = (
+				AE7AC4261EAEFC7C00374926 /* oil.png */,
 				3C3EAB801E1F410400838EFD /* チェッカーフラッグのフリーアイコン3.png */,
 				3C3EAB811E1F410400838EFD /* 三角コーンのアイコン素材.png */,
 				3C3EAB821E1F410400838EFD /* 水滴アイコン4.png */,
@@ -409,6 +412,7 @@
 				3CBD9E8F1DF2382300285D9C /* LaunchScreen.storyboard in Resources */,
 				3C7D723F1E276F5F00FDA615 /* flag-blue.jpg in Resources */,
 				3C3EAB851E1F410400838EFD /* 三角コーンのアイコン素材.png in Resources */,
+				AE7AC4271EAEFC7C00374926 /* oil.png in Resources */,
 				3C3EAB841E1F410400838EFD /* チェッカーフラッグのフリーアイコン3.png in Resources */,
 				3C7D72411E276F5F00FDA615 /* flag-red.jpg in Resources */,
 				3C7D72401E276F5F00FDA615 /* flag-yellow.jpg in Resources */,

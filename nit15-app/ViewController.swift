@@ -15,12 +15,13 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     public var centralManager:CBCentralManager!
     public var peripheral:CBPeripheral!
 
-    
+    //MARK: @IBOutlet
     @IBOutlet var stateLabel:UILabel!
     @IBOutlet var shiftLabel:UILabel!
     @IBOutlet var waterLabel:UILabel!
     @IBOutlet var voltLabel:UILabel!
     @IBOutlet var timeLabel:UILabel!
+    @IBOutlet var oilLabel:UILabel!
     //@IBOutlet var altaTimeLabel:UILabel!
     
     //インスタンスの宣言
@@ -31,6 +32,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var waterArray:[Int]!
     var voltNum:Float!
     var voltArray:[Float]!
+    var oilPresure:Float!
     
     //データベースの設定
     let ref = FIRDatabase.database().reference()
@@ -195,38 +197,44 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             if byte >= 0 && byte <= 255{
                 //RPM
                 if byte >= 200{
-                    rpmNum = (Int(byte) - 200) % 10
-                    print("rpm:\(rpmNum)")
                     
-                    //シフトポジション
-                    shiftNum = (Int(byte) - 200 - rpmNum) / 10
-                    print("シフト:\(shiftNum)")
+//                    //シフトポジション
+//                    shiftNum = (Int(byte) - 200 - rpmNum!) / 10
+//                    print("シフト:\(shiftNum!)")
+
+                    //油圧のパターン
+                    oilPresure = (Float(Int(byte) - 200))/100
+                    print("油圧:\(oilPresure!)")
+                    oilLabel.text = "\(oilPresure!)MPa"
                     
-                    //シフトの配列に追加
-                    shiftArray.append(shiftNum)
-                    if shiftArray.count >= maxShift{
-                        self.shiftCheck()
-                    }
-                    
-                    
-                    //self.rpmAnime(x: rpmNum)
-                    shiftLabel.text = String(shiftNum)
+//                    //シフトの配列に追加
+//                    shiftArray.append(shiftNum)
+//                    if shiftArray.count >= maxShift{
+//                        self.shiftCheck()
+//                    }
+//                    
+//                    
+//                    //self.rpmAnime(x: rpmNum)
+//                    shiftLabel.text = String(shiftNum)
                     
                     //水温の場合
                 }else if byte >= 0 && byte <= 120{
                     waterNum = Int(byte)
-                    print("水温:\(waterNum)℃")
-                    waterLabel.text = "\(waterNum)℃"
+                    print("水温:\(waterNum!)℃")
+                    waterLabel.text = "\(waterNum!)"
                     
                     
                 }else if byte >= 120 && byte <= 150{
                     voltNum = Float(byte) / 10
-                    if voltNum >= 10 && voltNum <= 14{
-                        voltArray.append(voltNum)
-                        
-                        //ボルト配列がある程度以上になったら，チェックする．
-                        self.voltCheck()
-                    }
+//                    if voltNum >= 10 && voltNum <= 14{
+//                        voltArray.append(voltNum)
+//                        
+//                        //ボルト配列がある程度以上になったら，チェックする．
+//                        self.voltCheck()
+//                    }
+                    print("volt:\(voltNum!)")
+                    voltLabel.text = String(voltNum!)
+                    
                 }
             }
             
@@ -296,13 +304,15 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     //バッテリー電圧の適正所作
     func voltCheck(){
-        for i in 0...maxVolt-2{
-            if voltArray[i+1] - voltArray[i] <= 0.5 && voltArray[i+1] - voltArray[i] >= -0.5{
-//                voltLabel.text = String(voltArray[i+1])
-                voltLabel.text = "\(voltArray[i+1])V"
-            }
-        }
-        voltArray.removeAll(keepingCapacity: true)
+//        for i in 0...maxVolt-2{
+//            if voltArray[i+1] - voltArray[i] <= 0.5 && voltArray[i+1] - voltArray[i] >= -0.5{
+////                voltLabel.text = String(voltArray[i+1])
+//                voltLabel.text = "\(voltArray[i+1])V"
+//            }
+//        }
+        //voltArray.removeAll(keepingCapacity: true)
+        
+        voltLabel.text = String(voltNum) 
     }
     
     

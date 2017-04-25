@@ -420,25 +420,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tj7-H6-3mq">
-                                <rect key="frame" x="180" y="395" width="116" height="60"/>
+                                <rect key="frame" x="184" y="471" width="116" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06g-pG-hce">
-                                <rect key="frame" x="16" y="395" width="132" height="60"/>
+                                <rect key="frame" x="20" y="471" width="132" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="電池のアイコン無料素材 その3.png" translatesAutoresizingMaskIntoConstraints="NO" id="MWR-rA-hBK">
-                                <rect key="frame" x="206" y="297" width="90" height="90"/>
+                                <rect key="frame" x="210" y="373" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="水滴アイコン4.png" translatesAutoresizingMaskIntoConstraints="NO" id="YNB-77-vVL">
-                                <rect key="frame" x="61" y="297" width="90" height="90"/>
+                                <rect key="frame" x="65" y="373" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="接続状況" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxn-sg-nJv">
@@ -449,16 +449,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeL-CL-o5v">
-                                <rect key="frame" x="33" y="186" width="254" height="128"/>
+                                <rect key="frame" x="78" y="48" width="254" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="N" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt5-dF-4ig">
-                                <rect key="frame" x="102" y="112" width="116" height="81"/>
+                                <rect key="frame" x="0.0" y="72" width="116" height="81"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="117"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j23-5A-wUt">
+                                <rect key="frame" x="33" y="437" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="oil.png" translatesAutoresizingMaskIntoConstraints="NO" id="uMu-AD-T7W">
+                                <rect key="frame" x="103" y="184" width="101" height="117"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-h0-omT">
+                                <rect key="frame" x="78" y="311" width="149" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -466,6 +481,8 @@
                         <color key="backgroundColor" red="0.45382863080000002" green="0.73820754440000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="alartImageView" destination="j23-5A-wUt" id="EF3-Nw-Gz0"/>
+                        <outlet property="oilLabel" destination="7gg-h0-omT" id="CQr-mz-kY2"/>
                         <outlet property="shiftLabel" destination="gt5-dF-4ig" id="BXa-bH-zu4"/>
                         <outlet property="stateLabel" destination="zxn-sg-nJv" id="xRB-sz-Wh6"/>
                         <outlet property="timeLabel" destination="KeL-CL-o5v" id="OkR-j5-KRF"/>
@@ -569,6 +586,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="oil.png" width="192" height="197"/>
         <image name="スパナとドライバーで設定アイコンの誕生.png" width="48" height="48"/>
         <image name="チェッカーフラッグのフリーアイコン3.png" width="256" height="256"/>
         <image name="三角コーンのアイコン素材.png" width="256" height="256"/>
