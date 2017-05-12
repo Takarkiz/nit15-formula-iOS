@@ -22,6 +22,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     @IBOutlet var voltLabel:UILabel!
     @IBOutlet var timeLabel:UILabel!
     @IBOutlet var oilLabel:UILabel!
+    @IBOutlet var timeStateLabel:UILabel!
     //@IBOutlet var altaTimeLabel:UILabel!
     
     //インスタンスの宣言
@@ -54,24 +55,24 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //@IBOutlet var pylonLabel:UILabel!
     
     
-    //適正値調整用の最大レンジに用いる定数
-    let maxShift:Int = 20
-    let maxTemp:Int = 15
-    let maxVolt:Int = 20
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        // ナビバーの表示を切り替える
-        //        if let nv = navigationController {
-        //            let hidden = !nv.isNavigationBarHidden
-        //            nv.setNavigationBarHidden(hidden, animated: true)
-        //        }
+
         alartImageView.isHidden = true
         //self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         
+        //ラップボタンに関して
+        timeStateLabel.layer.masksToBounds = true //枠を丸く
+        timeStateLabel.layer.cornerRadius = 20.0  //枠の半径
+        timeStateLabel.layer.borderWidth = 4.0
+        timeStateLabel.layer.backgroundColor = UIColor.red as! CGColor
+        timeStateLabel.text = "タイマー停止中"
+        
+    }
+    
+    @IBAction func reload(){
+        self.centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -207,15 +208,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     print("油圧:\(oilPresure!)")
                     oilLabel.text = "\(oilPresure!)MPa"
                     
-//                    //シフトの配列に追加
-//                    shiftArray.append(shiftNum)
-//                    if shiftArray.count >= maxShift{
-//                        self.shiftCheck()
-//                    }
-//                    
-//                    
-//                    //self.rpmAnime(x: rpmNum)
-//                    shiftLabel.text = String(shiftNum)
+
                     
                     //水温の場合
                 }else if byte >= 0 && byte <= 120{
@@ -226,12 +219,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     
                 }else if byte >= 120 && byte <= 150{
                     voltNum = Float(byte) / 10
-//                    if voltNum >= 10 && voltNum <= 14{
-//                        voltArray.append(voltNum)
-//                        
-//                        //ボルト配列がある程度以上になったら，チェックする．
-//                        self.voltCheck()
-//                    }
                     print("volt:\(voltNum!)")
                     voltLabel.text = String(voltNum!)
                     
@@ -241,79 +228,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
     }
     
-    //シフポジの適正所作
-    //シフトに値が入るたびに呼ばれる
-    func shiftCheck(){
-        var num:Int = 0
-        var count:Bool = false
-        for i in 0 ... maxShift-1{
-            
-            num = num + shiftArray[i]
-        }
-        
-        //シフトチェンジなしの場合
-        if num % shiftArray.count == 0{
-            if shiftArray[maxShift-1] == 6{
-                shiftLabel.text = "N"
-            }else{
-                shiftLabel.text = String(shiftArray[maxShift-1])
-            }
-        }else{
-            
-            //シフトチェンジありの場合の処理
-            //たった150ms*10=1.5秒の間に２回もシフトチェンジを行うことはない
-            for j in 0...maxShift-2{
-                if shiftArray[j+1] - shiftArray[j] == 1 || shiftArray[j+1] - shiftArray[j] == -1 && count == false{
-                    count = true
-                    
-                }else if shiftArray[j+1] - shiftArray[j] == 1 || shiftArray[j+1] - shiftArray[j] == -1 && count == true{
-                    count = false
-                    break
-                }
-            }
-            if count{
-                if shiftArray[maxShift-1] == 6{
-                    shiftLabel.text = "N"
-                }else{
-                    shiftLabel.text = String(shiftArray[maxShift-1])
-                }
-            }
-            
-        }
-        
-        //メモリ空間は残したまま配列の要素のみ削除
-        shiftArray.removeAll(keepingCapacity: true)
-    }
-    
-    
-    //水温の適正所作
-    func waterTempCheck(){
-        for i in 0...maxTemp-2{
-            if waterArray[i+1] - waterArray[i] <= 5 && waterArray[i+1] - waterArray[i] >= -5{
-                waterLabel.text = String(waterArray[i+1])
-                if waterArray[i+1] > 100{
-                    self.view.backgroundColor = UIColor.red
-                }else{
-                    self.view.backgroundColor = UIColor.black
-                }
-            }
-        }
-        
-        waterArray.removeAll(keepingCapacity: true)
-    }
-    
-    //バッテリー電圧の適正所作
-    func voltCheck(){
-//        for i in 0...maxVolt-2{
-//            if voltArray[i+1] - voltArray[i] <= 0.5 && voltArray[i+1] - voltArray[i] >= -0.5{
-////                voltLabel.text = String(voltArray[i+1])
-//                voltLabel.text = "\(voltArray[i+1])V"
-//            }
-//        }
-        //voltArray.removeAll(keepingCapacity: true)
-        
-        voltLabel.text = String(voltNum) 
-    }
+
     
     
     //Notifyingが開始された時に呼ばれる
@@ -380,7 +295,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     }
     
     //一旦ここはコメントアウト
-    /*
+    
      
      
     //新たにデータを読み込むメソッド
@@ -467,7 +382,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //最終項が1の時
         if timeState.last! == 1 || timeState.last! == 0{
             //タイマースタート
-            self.timerFunc()
+            //self.timerFunc()
         }else if timeState.last! == 2{
             //ラップタイムが切られたとき,
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -477,21 +392,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     }
     
     
-    //タイマーのオン・オフ
-    func timerFunc(){
-        if !timer.isValid && timeState.last == 1{
-            //タイマーが作動してなかったら動かす
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
-        }else if timer.isValid && timeState.last == 0{
-            timer.invalidate()
-        }
-    }
-    
-    //タイマーの数を繰り上げ，表示する関数
-    func up(){
-        count = count + 0.01
-        timeLabel.text = String(format: "%.2fs", count)
-    }
+
     
     //パイロンタッチを認識した時の処理
     func pylonTouch(){
@@ -526,6 +427,4 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         self.dismiss(animated: true, completion: nil)
     }
  
- */
-    
 }

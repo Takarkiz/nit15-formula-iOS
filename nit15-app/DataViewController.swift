@@ -17,7 +17,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     let ref = FIRDatabase.database().reference()    //FirebaseDatabaseのルートを設定
     //timerとパイロンの初期状態を宣言
-    var timeState:Int = 0
+    var timeState:Bool = false
     var pylonState:Int = 0
     var flagState:Int = 99
     
@@ -70,7 +70,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //パイロンボタンを押したとき
     @IBAction func pylon(){
         //timerがセットされている時しか動作しない
-        if timeState == 1{
+        if timeState == true{
             pylonState = pylonState + 1
         }else{
             //時間がセットされていない時
@@ -84,7 +84,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     @IBAction func timerWill(){
         //作動状態に変更
-        timeState = 1
+        timeState = true
         //隠して表示
         timerStartButton.isHidden = true
         rapButton.isHidden = false
@@ -99,14 +99,14 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     @IBAction func rapButtonWill(){
         //タイマーの状態を変更
-        timeState = 2
+        timeState = true
         //変更を送信
-        self.create(wheres: "runinfo",timeState: 2)
+        self.create(wheres: "runinfo",timeState: true)
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
         //遅延させて状態を『タイマー作動』にして送信
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.timeState = 1
+            self.timeState = true
             self.count = self.count + 0.5
             self.create(wheres: "runinfo",timeState: self.timeState)
         }
@@ -122,7 +122,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //ストップボタンを押した時
     @IBAction func stopButtonWill(){
         //タイムの状態を0に戻す
-        timeState = 0
+        timeState = false
         //タイマーを止める
         timer.invalidate()
         //ボタンを消す
@@ -151,14 +151,14 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     //タイマーの数を繰り上げ，表示する関数
     func up(){
-        if timeState == 1{
+        if timeState{
             count = count + 0.01
         }
         timeLabel.text = String(format: "%.2fs", count)
     }
     
     //データ送信のメソッド
-    func create(wheres:String,timeState:Int){
+    func create(wheres:String,timeState:Bool){
         
         //現在ログインしているユーザーがいるかどうかを判別する
         if let user = FIRAuth.auth()?.currentUser {
