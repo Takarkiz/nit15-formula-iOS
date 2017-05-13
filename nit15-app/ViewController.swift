@@ -14,7 +14,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     public var centralManager:CBCentralManager!
     public var peripheral:CBPeripheral!
-
+    
     //MARK: @IBOutlet
     @IBOutlet var stateLabel:UILabel!
     @IBOutlet var shiftLabel:UILabel!
@@ -26,14 +26,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     //@IBOutlet var altaTimeLabel:UILabel!
     
     //インスタンスの宣言
-    var rpmNum:Int!
-    var shiftNum:Int!
-    var shiftArray:[Int]!
-    var waterNum:Int!
-    var waterArray:[Int]!
-    var voltNum:Float!
-    var voltArray:[Float]!
-    var oilPresure:Float!
+    private var shiftNum:Int!
+    private var waterNum:Int!
+    private var voltNum:Float!
+    private var oilPresure:Float!
     
     //データベースの設定
     let ref = FIRDatabase.database().reference()
@@ -43,11 +39,10 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var timeState:[Int]!
     var pylonState:[Int]!
     var flagState: [Int]!
-    //タイマーのインスタンスを呼ぶ
-    var timer:Timer = Timer()
+    var timeArray:[Int]!
+    
     var count:Float = 0.0
-    //タイマーの値の一時保存（遅延に使用）
-    var altaCount:Float!
+    
     //databaseViewControllerのインスタンスを作成
     let dataV:DataViewController = DataViewController()
     //フラッグとパイロンを表示するImageView
@@ -57,17 +52,20 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         alartImageView.isHidden = true
         //self.reserve()
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         
-        //ラップボタンに関して
+        //タイムの更新状況を伝えるlabel
         timeStateLabel.layer.masksToBounds = true //枠を丸く
         timeStateLabel.layer.cornerRadius = 20.0  //枠の半径
-        timeStateLabel.layer.borderWidth = 4.0
-        timeStateLabel.layer.backgroundColor = UIColor.red as! CGColor
+        //        timeStateLabel.layer.backgroundColor = UIColor.red as! CGColor
+        timeStateLabel.backgroundColor =  UIColor.black
         timeStateLabel.text = "タイマー停止中"
+        
+        //データベースのデータを取得する
+        firstCatch()
         
     }
     
@@ -109,7 +107,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             }
             
             self.peripheral = peripheral
-          
+            
             //BLEデバイスが検出された時にペリフェラルの接続を開始する
             self.centralManager.connect(self.peripheral, options:nil)
         }else{
@@ -199,16 +197,16 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 //RPM
                 if byte >= 200{
                     
-//                    //シフトポジション
-//                    shiftNum = (Int(byte) - 200 - rpmNum!) / 10
-//                    print("シフト:\(shiftNum!)")
-
+                    //                    //シフトポジション
+                    //                    shiftNum = (Int(byte) - 200 - rpmNum!) / 10
+                    //                    print("シフト:\(shiftNum!)")
+                    
                     //油圧のパターン
                     oilPresure = (Float(Int(byte) - 200))/100
                     print("油圧:\(oilPresure!)")
                     oilLabel.text = "\(oilPresure!)MPa"
                     
-
+                    
                     
                     //水温の場合
                 }else if byte >= 0 && byte <= 120{
@@ -227,8 +225,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             
         }
     }
-    
-
     
     
     //Notifyingが開始された時に呼ばれる
@@ -294,37 +290,46 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         
     }
     
-    //一旦ここはコメントアウト
     
-     
-     
-    //新たにデータを読み込むメソッド
-    func getNewData(){
-        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.childAdded, with: {(snapshot) in
-            self.contentsArray.append(snapshot)
-            //ローカルのデータベースを更新
-            self.ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
-            self.format()
-        })
-        
-        
-    }
+    //    //新たにデータを読み込むメソッド
+    //    func getNewData(){
+    //        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.childAdded, with: {(snapshot) in
+    //            self.contentsArray.append(snapshot)
+    //            //ローカルのデータベースを更新
+    //            self.ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
+    //            self.format()
+    //        })
+    //    }
     
-
-    
-    //フラッグや，タイム，パイロンカウントを受信する
-    func reserve(){
-        //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
+    func firstCatch(){
         //今回は，childでrunInfoにアクセスし，ユーザーIDにアクセスする．
         ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.value, with:{(snapShots) in
             if snapShots.children.allObjects is [FIRDataSnapshot]{
-                //print("snapShots.children...\(snapShots.childrenCount)")
-                //print("snapShot...\(snapShots)")
+                print("snapShots.children...\(snapShots.childrenCount)")
+                print("snapShot...\(snapShots)")
                 
                 self.snap = snapShots
             }
             self.reload(self.snap)
         })
+    }
+    
+    
+    //フラッグや，タイム，パイロンカウントを受信する
+    func reserve(){
+        //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
+        
+        //
+        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.value, with: {(snapShots) in
+            if snapShots.children.allObjects is [FIRDataSnapshot]{
+                print("snapShots.children...\(snapShots.childrenCount)")
+                print("snapShot...\(snapShots)")
+                
+                self.snap = snapShots
+            }
+            self.reload(self.snap)
+        }
+        )
     }
     
     
@@ -360,53 +365,58 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             //取り出したものを配列に入れる
             formattingArray.append(content)
         }
-        //timeという添え字で保存したデータのみを配列として新たに登録
-        timeState = formattingArray.map{$0["time"]!}
-        print("timeState\(timeState)")
-        self.timeCheck()
+        //stateという添え字で保存したデータのみを配列として新たに登録
+        timeState = formattingArray.map{$0["state"]!}
+        print("state\(timeState)")
+        
         //pylonという添え字で保存したデータのみを配列として新たに作る
         pylonState = formattingArray.map{$0["pylon"]!}
         print("pylonState\(pylonState)")
         self.pylonTouch()
         //flagという添え字で保持したデータを読み込む
-        flagState =  formattingArray.map{$0["flag"]!}
+        flagState = formattingArray.map{$0["flag"]!}
         print("flagState:\(flagState)")
         self.flagView()
+        //timeという添え字で保存したデータを配列として生成
+        timeArray = formattingArray.map{$0["time"]!}
         
+        self.timeCheck()
         print("受信完了")
-        self.getNewData()
     }
     
+    //MARK:それぞれの値に対しての処理
     //フォーマットした値に応じたタイマーの処理
     func timeCheck(){
-        //最終項が1の時
-        if timeState.last! == 1 || timeState.last! == 0{
-            //タイマースタート
-            //self.timerFunc()
-        }else if timeState.last! == 2{
-            //ラップタイムが切られたとき,
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.count = self.count + 2.0
-            }
+        if timeState.last! >= 1{
+            timeStateLabel.text = "測定中"
+            timeStateLabel.backgroundColor = UIColor.orange
+            let temptime:Float = Float(timeArray.last!) / 100
+            timeLabel.text = String(temptime)
+            print(temptime)
+        }else{
+            timeStateLabel.text = "測定外"
+            timeStateLabel.backgroundColor = UIColor.black
+            timeLabel.text = "0"
         }
+        
     }
     
-    
-
     
     //パイロンタッチを認識した時の処理
     func pylonTouch(){
         //数を表示
         //pylonLabel.text = String(pylonState.last!)
         if pylonState.last! >= 1{
-            alartImageView.image = UIImage(named:"red-corn.png")
             alartImageView.isHidden = false
+            alartImageView.image = UIImage(named:"red-corn.png")
             
-            //遅延動作
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.count = self.count + 2.0
-                self.alartImageView.isHidden = true
-            }
+//            //遅延動作
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+//                self.count = self.count + 2.0
+//                self.alartImageView.isHidden = true
+//            }
+        }else{
+            alartImageView.isHidden = true
         }
         
     }
@@ -415,7 +425,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func flagView(){
         //イメージを宣言
         var flagImage = dataV.flagImage
-        if flagState.last! == 99{
+        if flagState.last! == 99 || flagState.last! == 6{
             alartImageView.isHidden = true
         }else{
             alartImageView.image = flagImage[flagState.last!]
@@ -426,5 +436,5 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     func back(){
         self.dismiss(animated: true, completion: nil)
     }
- 
+    
 }

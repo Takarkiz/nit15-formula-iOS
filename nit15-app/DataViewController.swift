@@ -17,7 +17,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     let ref = FIRDatabase.database().reference()    //FirebaseDatabaseのルートを設定
     //timerとパイロンの初期状態を宣言
-    var timeState:Bool = false
+    var timeState:Int = 0
     var pylonState:Int = 0
     var flagState:Int = 99
     
@@ -70,7 +70,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //パイロンボタンを押したとき
     @IBAction func pylon(){
         //timerがセットされている時しか動作しない
-        if timeState == true{
+        if timeState == 1{
             pylonState = pylonState + 1
         }else{
             //時間がセットされていない時
@@ -84,7 +84,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     @IBAction func timerWill(){
         //作動状態に変更
-        timeState = true
+        timeState = 1
         //隠して表示
         timerStartButton.isHidden = true
         rapButton.isHidden = false
@@ -92,26 +92,39 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
         //Firebaseにタイマーがオンになっていることを送信する
         self.create(wheres: "runinfo",timeState: timeState)
-        //タイマーを作動させる
-        self.timerFunc()
         
+        //タイマーの処理を開始
+        timerAction()
     }
     
+    //タイマーのオン・オフを切り替えるメソッド
+    func timerAction(){
+        if !timer.isValid{
+            //タイマーが作動してなかったら動かす
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
+        }
+    }
+    
+    //タイマーの数を繰り上げ，表示する関数
+    func up(){
+        if timeState != 0{
+            count = count + 0.01
+        }
+        timeLabel.text = String(format: "%.2fs", count)
+    }
+    
+    //ラップタイムボタンを選択時
     @IBAction func rapButtonWill(){
         //タイマーの状態を変更
-        timeState = true
+        timeState += 1
         //変更を送信
-        self.create(wheres: "runinfo",timeState: true)
+        self.create(wheres: "runinfo",timeState: timeState)
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
-        //遅延させて状態を『タイマー作動』にして送信
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.timeState = true
-            self.count = self.count + 0.5
-            self.create(wheres: "runinfo",timeState: self.timeState)
-        }
+        
         //カウントは初期化
         count = 0
+        
         //ラップタイムラベルにラップタイムを表示
         rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
         
@@ -122,7 +135,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //ストップボタンを押した時
     @IBAction func stopButtonWill(){
         //タイムの状態を0に戻す
-        timeState = false
+        timeState = 0
         //タイマーを止める
         timer.invalidate()
         //ボタンを消す
@@ -133,39 +146,25 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //countを初期化
         count = 0
         timeLabel.text = String(count)
+        flagState = 99
+        pylonState = 0
         //stopボタンが押されたことを通知する
         self.create(wheres: "runinfo",timeState: timeState)
         self.finish()
         
     }
     
-    //タイマーのオン・オフを切り替えるメソッド
-    func timerFunc(){
-        if !timer.isValid{
-            //タイマーが作動してなかったら動かす
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.up), userInfo: nil, repeats: true)
-        }else{
-            timer.invalidate()
-        }
-    }
-    
-    //タイマーの数を繰り上げ，表示する関数
-    func up(){
-        if timeState{
-            count = count + 0.01
-        }
-        timeLabel.text = String(format: "%.2fs", count)
-    }
+
     
     //データ送信のメソッド
-    func create(wheres:String,timeState:Bool){
+    func create(wheres:String,timeState:Int){
         
         //現在ログインしているユーザーがいるかどうかを判別する
         if let user = FIRAuth.auth()?.currentUser {
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["time":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp()])
+            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["state":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp(),"time":count*100])
         } else {
             //ユーザーがログインしていない場合
             return
