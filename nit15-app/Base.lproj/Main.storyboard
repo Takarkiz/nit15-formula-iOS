@@ -275,11 +275,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="三角コーンのアイコン素材.png"/>
                                 <connections>
-                                    <action selector="pylon" destination="lzv-Fv-PoF" eventType="touchUpInside" id="h6C-FB-2Ft"/>
+                                    <action selector="pylon" destination="lzv-Fv-PoF" eventType="touchDown" id="Fey-Xe-bYq"/>
+                                    <action selector="pylonButtonDid" destination="lzv-Fv-PoF" eventType="touchUpInside" id="MXo-nm-zg4"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="×0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shv-wr-7dV">
                                 <rect key="frame" x="145" y="443" width="47" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="フラッグ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRc-RT-ktS">
+                                <rect key="frame" x="247" y="378" width="70" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="53z-Qs-2px">
+                                <rect key="frame" x="250" y="407" width="67" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sc-f4-iMA">
+                                <rect key="frame" x="117" y="103" width="29" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -290,6 +309,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="vTy-Ob-aaa" id="kXv-sR-dlU"/>
+                        <outlet property="nowFlag" destination="53z-Qs-2px" id="dqe-2P-vbk"/>
                         <outlet property="pylonCountLabel" destination="shv-wr-7dV" id="6zB-5H-bIs"/>
                         <outlet property="rapButton" destination="2Wx-Np-NMZ" id="NKM-yd-5TC"/>
                         <outlet property="rapTimeLabel" destination="t1D-I6-THw" id="byk-uF-NkU"/>
@@ -452,15 +472,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j23-5A-wUt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j23-5A-wUt">
                                 <rect key="frame" x="13" y="232" width="295" height="231"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eid-Yr-Aja">
+                                <rect key="frame" x="12" y="232" width="295" height="231"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.45382863080000002" green="0.73820754440000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="alartImageView" destination="j23-5A-wUt" id="EF3-Nw-Gz0"/>
+                        <outlet property="alartImageView" destination="j23-5A-wUt" id="H7a-aR-J2F"/>
+                        <outlet property="pylonShot" destination="eid-Yr-Aja" id="fg2-Y5-hpC"/>
                         <outlet property="shiftLabel" destination="gt5-dF-4ig" id="BXa-bH-zu4"/>
                         <outlet property="stateLabel" destination="zxn-sg-nJv" id="xRB-sz-Wh6"/>
                         <outlet property="timeLabel" destination="PgW-Mw-TiP" id="ewy-ob-qoi"/>

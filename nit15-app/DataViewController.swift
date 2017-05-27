@@ -42,6 +42,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     @IBOutlet var timerStartButton:UIButton! //ボタン
     @IBOutlet var rapButton:UIButton!   //ラップする時用のボタン
     @IBOutlet var stopButton:UIButton!  //ストップする用のボタン
+    @IBOutlet var nowFlag:UIImageView!  //今のフラッグを確認用で表示
+    @IBOutlet var lapCount:UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +73,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     //パイロンボタンを押したとき
     @IBAction func pylon(){
         //timerがセットされている時しか動作しない
-        if timeState == 1{
+        if timeState >= 1{
             pylonState = pylonState + 1
         }else{
             //時間がセットされていない時
@@ -79,19 +82,29 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //パイロンの個数を表示
         pylonCountLabel.text = "×\(pylonState)"
         //パイロンの数を送信
-        self.create(wheres: "runinfo",timeState: timeState)
+        self.create(wheres: "runinfo",count: rapTimeArray.last!)
+    }
+    
+    @IBAction func pylonButtonDid(){
+        let temp = pylonState
+        pylonState = 0
+        self.create(wheres: "runinfo",count: rapTimeArray.last!)
+        pylonState = temp
     }
     
     @IBAction func timerWill(){
         //作動状態に変更
         timeState = 1
+        //何周目かを表示
+        lapCount.text = "lap:\(timeState)"
+        
         //隠して表示
         timerStartButton.isHidden = true
         rapButton.isHidden = false
         stopButton.isHidden = false
         
         //Firebaseにタイマーがオンになっていることを送信する
-        self.create(wheres: "runinfo",timeState: timeState)
+        self.create(wheres: "runinfo",count: count)
         
         //タイマーの処理を開始
         timerAction()
@@ -117,8 +130,13 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     @IBAction func rapButtonWill(){
         //タイマーの状態を変更
         timeState += 1
+        //何周目か
+        lapCount.text = "lap:\(timeState)"
         //変更を送信
-        self.create(wheres: "runinfo",timeState: timeState)
+        let temp = pylonState
+        pylonState = 0
+        self.create(wheres: "runinfo",count: count)
+        pylonState = temp
         //現在のcountをラップタイムの配列に入れる
         rapTimeArray.append(count)
         
@@ -127,9 +145,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
         //ラップタイムラベルにラップタイムを表示
         rapTimeLabel.text = String(format:"%.2fs", rapTimeArray.last!)
-        
-        
-        
+
     }
     
     //ストップボタンを押した時
@@ -149,15 +165,15 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         flagState = 99
         pylonState = 0
         //stopボタンが押されたことを通知する
-        self.create(wheres: "runinfo",timeState: timeState)
+        self.create(wheres: "runinfo",count: count)
         self.finish()
         
     }
     
-
+    
     
     //データ送信のメソッド
-    func create(wheres:String,timeState:Int){
+    func create(wheres:String,count:Float){
         
         //現在ログインしているユーザーがいるかどうかを判別する
         if let user = FIRAuth.auth()?.currentUser {
@@ -165,6 +181,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
             self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["state":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp(),"time":count*100])
+            
         } else {
             //ユーザーがログインしていない場合
             return
@@ -209,7 +226,16 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("\(indexPath.row)が選択")
         flagState = indexPath.row
-        self.create(wheres: "runinfo",timeState: timeState)
+        let temp = pylonState
+        pylonState = 0
+        if indexPath.row != 5{
+            nowFlag.isHidden = false
+            nowFlag.image = flagImage[indexPath.row]
+        }else if indexPath.row == 5{
+            nowFlag.isHidden = true
+        }
+        self.create(wheres: "runinfo",count: rapTimeArray.last!)
+        pylonState = temp
     }
     
     

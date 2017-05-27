@@ -21,7 +21,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     @IBOutlet var waterLabel:UILabel!
     @IBOutlet var voltLabel:UILabel!
     @IBOutlet var timeLabel:UILabel!
-    @IBOutlet var oilLabel:UILabel!
+    //@IBOutlet var oilLabel:UILabel!
     @IBOutlet var timeStateLabel:UILabel!
     //@IBOutlet var altaTimeLabel:UILabel!
     
@@ -29,7 +29,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     private var shiftNum:Int!
     private var waterNum:Int!
     private var voltNum:Float!
-    private var oilPresure:Float!
+    //    private var oilPresure:Float!
     
     //データベースの設定
     let ref = FIRDatabase.database().reference()
@@ -47,6 +47,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     let dataV:DataViewController = DataViewController()
     //フラッグとパイロンを表示するImageView
     @IBOutlet var alartImageView:UIImageView!
+    @IBOutlet var pylonShot:UIImageView!
     //@IBOutlet var pylonLabel:UILabel!
     
     
@@ -197,14 +198,21 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                 //RPM
                 if byte >= 200{
                     
-                    //                    //シフトポジション
-                    //                    shiftNum = (Int(byte) - 200 - rpmNum!) / 10
-                    //                    print("シフト:\(shiftNum!)")
+                    //シフトポジション
+                    shiftNum = (Int(byte) - 200) / 10
+                    print("シフト:\(shiftNum!)")
+                    if shiftNum > 0 && shiftNum <= 5{
+                        shiftLabel.text = String(shiftNum)
+                    }else if shiftNum == 6{
+                        shiftLabel.text = "N"
+                    }else {
+                        shiftLabel.text = "X"
+                    }
                     
-                    //油圧のパターン
-                    oilPresure = (Float(Int(byte) - 200))/100
-                    print("油圧:\(oilPresure!)")
-                    oilLabel.text = "\(oilPresure!)MPa"
+                    //                    //油圧のパターン
+                    //                    oilPresure = (Float(Int(byte) - 200))/100
+                    //                    print("油圧:\(oilPresure!)")
+                    //                    oilLabel.text = "\(oilPresure!)MPa"
                     
                     
                     
@@ -407,16 +415,11 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //数を表示
         //pylonLabel.text = String(pylonState.last!)
         if pylonState.last! >= 1{
-            alartImageView.isHidden = false
-            alartImageView.image = UIImage(named:"red-corn.png")
+            pylonShot.isHidden = false
+            pylonShot.image = UIImage(named:"corn.png")
             
-//            //遅延動作
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-//                self.count = self.count + 2.0
-//                self.alartImageView.isHidden = true
-//            }
         }else{
-            alartImageView.isHidden = true
+            pylonShot.isHidden = true
         }
         
     }
