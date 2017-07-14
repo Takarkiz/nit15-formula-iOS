@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OldDataViewController: UIViewController {
+class OldDataViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     
 
@@ -21,6 +21,16 @@ class OldDataViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        return cell
     }
     
     

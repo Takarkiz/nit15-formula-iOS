@@ -12,8 +12,9 @@ import Firebase
 
 class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDelegate{
     
-    public var centralManager:CBCentralManager!
-    public var peripheral:CBPeripheral!
+    private var centralManager:CBCentralManager!
+    private var peripheral:CBPeripheral!
+    private var peripherals:NSArray!
     
     //MARK: @IBOutlet
     @IBOutlet var stateLabel:UILabel!
@@ -71,7 +72,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     }
     
     @IBAction func reload(){
-        self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string:"2A750D7D-BD9A-928F-B744-7D5A70CEF1F9")])
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -339,7 +340,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         }
         )
     }
-    
+
     
     //読み込んだデータをそれぞれ分ける
     func reload(_ snap:FIRDataSnapshot){

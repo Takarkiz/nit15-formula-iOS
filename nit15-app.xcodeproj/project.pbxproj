@@ -43,7 +43,23 @@
 		3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */; };
 		7D1C1C7D00139ACB496CAD49 /* Pods_nit15_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */; };
 		8C6527C26A89C4A2C09B6E4B /* Pods_nit15_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */; };
+		AE225CF51EE8411A0080EB23 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE61EE8411A0080EB23 /* Contents.json */; };
+		AE225CF61EE8411B0080EB23 /* icon-nit15-20.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE71EE8411A0080EB23 /* icon-nit15-20.png */; };
+		AE225CF71EE8411B0080EB23 /* icon-nit15-20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE81EE8411A0080EB23 /* icon-nit15-20@2x.png */; };
+		AE225CF81EE8411B0080EB23 /* icon-nit15-20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE91EE8411A0080EB23 /* icon-nit15-20@3x.png */; };
+		AE225CF91EE8411B0080EB23 /* icon-nit15-29.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CEA1EE8411A0080EB23 /* icon-nit15-29.png */; };
+		AE225CFA1EE8411B0080EB23 /* icon-nit15-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CEB1EE8411A0080EB23 /* icon-nit15-29@2x.png */; };
+		AE225CFB1EE8411B0080EB23 /* icon-nit15-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CEC1EE8411A0080EB23 /* icon-nit15-29@3x.png */; };
+		AE225CFC1EE8411B0080EB23 /* icon-nit15-40.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CED1EE8411A0080EB23 /* icon-nit15-40.png */; };
+		AE225CFD1EE8411B0080EB23 /* icon-nit15-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CEE1EE8411A0080EB23 /* icon-nit15-40@2x.png */; };
+		AE225CFE1EE8411B0080EB23 /* icon-nit15-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CEF1EE8411A0080EB23 /* icon-nit15-40@3x.png */; };
+		AE225CFF1EE8411B0080EB23 /* icon-nit15-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CF01EE8411A0080EB23 /* icon-nit15-60@2x.png */; };
+		AE225D001EE8411B0080EB23 /* icon-nit15-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CF11EE8411A0080EB23 /* icon-nit15-60@3x.png */; };
+		AE225D011EE8411B0080EB23 /* icon-nit15-76.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CF21EE8411A0080EB23 /* icon-nit15-76.png */; };
+		AE225D021EE8411B0080EB23 /* icon-nit15-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CF31EE8411A0080EB23 /* icon-nit15-76@2x.png */; };
+		AE225D031EE8411B0080EB23 /* icon-nit15-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CF41EE8411A0080EB23 /* icon-nit15-83.5@2x.png */; };
 		AE2400B81ED0A91A0003B912 /* corn.png in Resources */ = {isa = PBXBuildFile; fileRef = AE2400B71ED0A91A0003B912 /* corn.png */; };
+		AE591FC51F15C41300397743 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE591FC41F15C41300397743 /* Alert.swift */; };
 		AE7AC4271EAEFC7C00374926 /* oil.png in Resources */ = {isa = PBXBuildFile; fileRef = AE7AC4261EAEFC7C00374926 /* oil.png */; };
 		AEA0D3581EC5F7D10025803F /* リロードアイコン.png in Resources */ = {isa = PBXBuildFile; fileRef = AEA0D3571EC5F7D10025803F /* リロードアイコン.png */; };
 /* End PBXBuildFile section */
@@ -111,7 +127,23 @@
 		44476B7D7317B2006EA073B4 /* Pods-nit15-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-app/Pods-nit15-app.release.xcconfig"; sourceTree = "<group>"; };
 		84A4CF2CD86F71347509B119 /* Pods-nit15-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E7F0CABC56167A9ABDB3FB4 /* Pods-nit15-appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AE225CE61EE8411A0080EB23 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		AE225CE71EE8411A0080EB23 /* icon-nit15-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-20.png"; sourceTree = "<group>"; };
+		AE225CE81EE8411A0080EB23 /* icon-nit15-20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-20@2x.png"; sourceTree = "<group>"; };
+		AE225CE91EE8411A0080EB23 /* icon-nit15-20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-20@3x.png"; sourceTree = "<group>"; };
+		AE225CEA1EE8411A0080EB23 /* icon-nit15-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-29.png"; sourceTree = "<group>"; };
+		AE225CEB1EE8411A0080EB23 /* icon-nit15-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-29@2x.png"; sourceTree = "<group>"; };
+		AE225CEC1EE8411A0080EB23 /* icon-nit15-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-29@3x.png"; sourceTree = "<group>"; };
+		AE225CED1EE8411A0080EB23 /* icon-nit15-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-40.png"; sourceTree = "<group>"; };
+		AE225CEE1EE8411A0080EB23 /* icon-nit15-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-40@2x.png"; sourceTree = "<group>"; };
+		AE225CEF1EE8411A0080EB23 /* icon-nit15-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-40@3x.png"; sourceTree = "<group>"; };
+		AE225CF01EE8411A0080EB23 /* icon-nit15-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-60@2x.png"; sourceTree = "<group>"; };
+		AE225CF11EE8411A0080EB23 /* icon-nit15-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-60@3x.png"; sourceTree = "<group>"; };
+		AE225CF21EE8411A0080EB23 /* icon-nit15-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-76.png"; sourceTree = "<group>"; };
+		AE225CF31EE8411A0080EB23 /* icon-nit15-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-76@2x.png"; sourceTree = "<group>"; };
+		AE225CF41EE8411A0080EB23 /* icon-nit15-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-83.5@2x.png"; sourceTree = "<group>"; };
 		AE2400B71ED0A91A0003B912 /* corn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corn.png; sourceTree = "<group>"; };
+		AE591FC41F15C41300397743 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		AE7AC4261EAEFC7C00374926 /* oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oil.png; sourceTree = "<group>"; };
 		AEA0D3571EC5F7D10025803F /* リロードアイコン.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "リロードアイコン.png"; sourceTree = "<group>"; };
 		B01BCF8FD4FF638579008893 /* Pods-nit15-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appTests/Pods-nit15-appTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +272,7 @@
 				3C3EAB771E1F3F5500838EFD /* EditViewController.swift */,
 				3C3EAB7B1E1F3FDB00838EFD /* LoginViewController.swift */,
 				3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */,
+				AE591FC41F15C41300397743 /* Alert.swift */,
 				3C3EAB7D1E1F3FFC00838EFD /* DataViewController.swift */,
 				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
 				3C3EAB8C1E1F5DAA00838EFD /* OldDataViewController.swift */,
@@ -247,6 +280,7 @@
 				3CBD9E881DF2382300285D9C /* Main.storyboard */,
 				3CBD9E8B1DF2382300285D9C /* Assets.xcassets */,
 				3CBD9E8D1DF2382300285D9C /* LaunchScreen.storyboard */,
+				AE225CE51EE8411A0080EB23 /* AppIcon.appiconset */,
 				3C3606781E2CC37A00173B30 /* Defaults */,
 				3C7D72371E276F2D00FDA615 /* Flag */,
 				3C1C5CB21E25E10600BD47EE /* infoPlist */,
@@ -284,6 +318,28 @@
 				8E7F0CABC56167A9ABDB3FB4 /* Pods-nit15-appUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AE225CE51EE8411A0080EB23 /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				AE225CE61EE8411A0080EB23 /* Contents.json */,
+				AE225CE71EE8411A0080EB23 /* icon-nit15-20.png */,
+				AE225CE81EE8411A0080EB23 /* icon-nit15-20@2x.png */,
+				AE225CE91EE8411A0080EB23 /* icon-nit15-20@3x.png */,
+				AE225CEA1EE8411A0080EB23 /* icon-nit15-29.png */,
+				AE225CEB1EE8411A0080EB23 /* icon-nit15-29@2x.png */,
+				AE225CEC1EE8411A0080EB23 /* icon-nit15-29@3x.png */,
+				AE225CED1EE8411A0080EB23 /* icon-nit15-40.png */,
+				AE225CEE1EE8411A0080EB23 /* icon-nit15-40@2x.png */,
+				AE225CEF1EE8411A0080EB23 /* icon-nit15-40@3x.png */,
+				AE225CF01EE8411A0080EB23 /* icon-nit15-60@2x.png */,
+				AE225CF11EE8411A0080EB23 /* icon-nit15-60@3x.png */,
+				AE225CF21EE8411A0080EB23 /* icon-nit15-76.png */,
+				AE225CF31EE8411A0080EB23 /* icon-nit15-76@2x.png */,
+				AE225CF41EE8411A0080EB23 /* icon-nit15-83.5@2x.png */,
+			);
+			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,13 +461,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE225D001EE8411B0080EB23 /* icon-nit15-60@3x.png in Resources */,
 				3C7D723E1E276F5F00FDA615 /* flag-orangeBall.jpg in Resources */,
 				3C3EAB8B1E1F420B00838EFD /* 電源のアイコン素材.png in Resources */,
+				AE225CF81EE8411B0080EB23 /* icon-nit15-20@3x.png in Resources */,
+				AE225CF61EE8411B0080EB23 /* icon-nit15-20.png in Resources */,
 				3C3EAB891E1F420300838EFD /* スパナとドライバーで設定アイコンの誕生.png in Resources */,
 				3CBDD5A21E3736E100204BDC /* flag-black.jpg in Resources */,
 				3C3EAB871E1F410400838EFD /* 電池のアイコン無料素材 その3.png in Resources */,
+				AE225CFB1EE8411B0080EB23 /* icon-nit15-29@3x.png in Resources */,
+				AE225D011EE8411B0080EB23 /* icon-nit15-76.png in Resources */,
+				AE225D021EE8411B0080EB23 /* icon-nit15-76@2x.png in Resources */,
 				3C3EAB861E1F410400838EFD /* 水滴アイコン4.png in Resources */,
 				3C36067E1E2CC37A00173B30 /* Default-736h@3x.png in Resources */,
+				AE225D031EE8411B0080EB23 /* icon-nit15-83.5@2x.png in Resources */,
+				AE225CFE1EE8411B0080EB23 /* icon-nit15-40@3x.png in Resources */,
 				AE2400B81ED0A91A0003B912 /* corn.png in Resources */,
 				3CBD9E8F1DF2382300285D9C /* LaunchScreen.storyboard in Resources */,
 				3C7D723F1E276F5F00FDA615 /* flag-blue.jpg in Resources */,
@@ -422,8 +486,15 @@
 				3C7D72411E276F5F00FDA615 /* flag-red.jpg in Resources */,
 				3C7D72401E276F5F00FDA615 /* flag-yellow.jpg in Resources */,
 				3C7D723D1E276F5F00FDA615 /* flag-green.jpg in Resources */,
+				AE225CF51EE8411A0080EB23 /* Contents.json in Resources */,
 				3C36067D1E2CC37A00173B30 /* Default-667h@2x.png in Resources */,
+				AE225CF71EE8411B0080EB23 /* icon-nit15-20@2x.png in Resources */,
+				AE225CFF1EE8411B0080EB23 /* icon-nit15-60@2x.png in Resources */,
 				3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */,
+				AE225CF91EE8411B0080EB23 /* icon-nit15-29.png in Resources */,
+				AE225CFA1EE8411B0080EB23 /* icon-nit15-29@2x.png in Resources */,
+				AE225CFC1EE8411B0080EB23 /* icon-nit15-40.png in Resources */,
+				AE225CFD1EE8411B0080EB23 /* icon-nit15-40@2x.png in Resources */,
 				3C36067C1E2CC37A00173B30 /* Default-568h@2x.png in Resources */,
 				3CBD9E8C1DF2382300285D9C /* Assets.xcassets in Resources */,
 				3CBD9E8A1DF2382300285D9C /* Main.storyboard in Resources */,
@@ -595,6 +666,7 @@
 				3C3EAB781E1F3F5600838EFD /* EditViewController.swift in Sources */,
 				3C3EAB7A1E1F3F6A00838EFD /* SigninViewController.swift in Sources */,
 				3CBD9E871DF2382300285D9C /* ViewController.swift in Sources */,
+				AE591FC51F15C41300397743 /* Alert.swift in Sources */,
 				3C1C5CB11E25DCF000BD47EE /* AnotherLoginViewController.swift in Sources */,
 				3CBD9E851DF2382300285D9C /* AppDelegate.swift in Sources */,
 				3C7D72361E27377900FDA615 /* CustomClass.swift in Sources */,

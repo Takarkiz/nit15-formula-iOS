@@ -21,7 +21,7 @@ class StartViewController: UIViewController {
     func getNowLoginUser(){
         if let user = FIRAuth.auth()?.currentUser {
             //ユーザーがログインしている場合
-            stateLabel.text = "現在 \(user.displayName!)がログイン"
+            //stateLabel.text = "現在 \(user.displayName!)がログイン"
         }else{
             //誰もログインしていない場合
             stateLabel.text = "未ログイン"

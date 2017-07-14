@@ -126,6 +126,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         timeLabel.text = String(format: "%.2fs", count)
     }
     
+    
     //ラップタイムボタンを選択時
     @IBAction func rapButtonWill(){
         //タイマーの状態を変更
@@ -180,7 +181,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["state":timeState,"pylon":pylonState,"flag":flagState, "date": FIRServerValue.timestamp(),"time":count*100])
+            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["state":timeState,"pylon":pylonState,"flag":flagState,"time":count*100])
             
         } else {
             //ユーザーがログインしていない場合
@@ -196,9 +197,9 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.displayName)!).child("finish").childByAutoId().setValue(["time":rapTimeArray, "date": FIRServerValue.timestamp()])
+            self.ref.child((user.displayName)!).child("finish").childByAutoId().setValue(["time":rapTimeArray, "date":getToday()])
         } else {
-            //ユーザーがログインしていない場合
+            //ユーザーがログインしていない場合zgrfe
             return
         }
     }
@@ -249,6 +250,14 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
+    }
+    
+    func getToday(format:String = "yyyy/MM/dd HH:mm:ss") -> String {
+        
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: now as Date)
     }
     
     
