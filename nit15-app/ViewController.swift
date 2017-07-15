@@ -442,3 +442,5 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     }
     
 }
+
+

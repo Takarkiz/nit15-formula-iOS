@@ -268,18 +268,13 @@
 				3CBD9E841DF2382300285D9C /* AppDelegate.swift */,
 				3CBD9E861DF2382300285D9C /* ViewController.swift */,
 				3C3EAB751E1F3F3000838EFD /* StartViewController.swift */,
-				3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */,
-				3C3EAB771E1F3F5500838EFD /* EditViewController.swift */,
-				3C3EAB7B1E1F3FDB00838EFD /* LoginViewController.swift */,
-				3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */,
+				AEB1A8511F193C0D006F1CF3 /* User */,
 				AE591FC41F15C41300397743 /* Alert.swift */,
-				3C3EAB7D1E1F3FFC00838EFD /* DataViewController.swift */,
-				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
+				AEB1A8501F193BFB006F1CF3 /* SendData */,
 				3C3EAB8C1E1F5DAA00838EFD /* OldDataViewController.swift */,
 				3C7D72351E27377900FDA615 /* CustomClass.swift */,
-				3CBD9E881DF2382300285D9C /* Main.storyboard */,
+				AEB1A84F1F193BD8006F1CF3 /* StoryBoard */,
 				3CBD9E8B1DF2382300285D9C /* Assets.xcassets */,
-				3CBD9E8D1DF2382300285D9C /* LaunchScreen.storyboard */,
 				AE225CE51EE8411A0080EB23 /* AppIcon.appiconset */,
 				3C3606781E2CC37A00173B30 /* Defaults */,
 				3C7D72371E276F2D00FDA615 /* Flag */,
@@ -340,6 +335,35 @@
 				AE225CF41EE8411A0080EB23 /* icon-nit15-83.5@2x.png */,
 			);
 			path = AppIcon.appiconset;
+			sourceTree = "<group>";
+		};
+		AEB1A84F1F193BD8006F1CF3 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				3CBD9E881DF2382300285D9C /* Main.storyboard */,
+				3CBD9E8D1DF2382300285D9C /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoard;
+			sourceTree = "<group>";
+		};
+		AEB1A8501F193BFB006F1CF3 /* SendData */ = {
+			isa = PBXGroup;
+			children = (
+				3C3EAB7D1E1F3FFC00838EFD /* DataViewController.swift */,
+				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
+			);
+			name = SendData;
+			sourceTree = "<group>";
+		};
+		AEB1A8511F193C0D006F1CF3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3C3EAB791E1F3F6A00838EFD /* SigninViewController.swift */,
+				3C3EAB771E1F3F5500838EFD /* EditViewController.swift */,
+				3C3EAB7B1E1F3FDB00838EFD /* LoginViewController.swift */,
+				3C1C5CB01E25DCF000BD47EE /* AnotherLoginViewController.swift */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
