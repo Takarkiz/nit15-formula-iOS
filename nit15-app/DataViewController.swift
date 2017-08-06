@@ -98,7 +98,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
         //何周目かを表示
         lapCount.text = "lap:\(timeState)"
         
-        //隠して表示
+        //隠してラップ，終了ボタンを表示
         timerStartButton.isHidden = true
         rapButton.isHidden = false
         stopButton.isHidden = false
@@ -181,7 +181,7 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
             // User is signed in.
             //ログインしているユーザーのIDをchildにしてユーザーデータを作成
             //childByAutoID()でユーザーnameの下に，IDを自動生成してその中にデータを入れる
-            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["state":timeState,"pylon":pylonState,"flag":flagState,"time":count*100])
+            self.ref.child((user.displayName)!).child(wheres).childByAutoId().updateChildValues(["state":timeState,"pylon":pylonState,"flag":flagState,"time":count*100,"lap":timeState])
             
         } else {
             //ユーザーがログインしていない場合
@@ -264,18 +264,18 @@ class DataViewController: UIViewController,UICollectionViewDataSource,UICollecti
     func buttonSetting(){
         //ボタンの見た目の設定->丸に
         timerStartButton.layer.masksToBounds = true //枠を丸く
-        timerStartButton.layer.cornerRadius = 40.0  //枠の半径
-        timerStartButton.layer.borderWidth = 4.0
+        timerStartButton.layer.cornerRadius = 60.0  //枠の半径
+        timerStartButton.layer.borderWidth = 3.0
         timerStartButton.layer.borderColor = UIColor.black.cgColor
         //ラップボタンに関して
         rapButton.layer.masksToBounds = true //枠を丸く
-        rapButton.layer.cornerRadius = 40.0  //枠の半径
-        rapButton.layer.borderWidth = 4.0
+        rapButton.layer.cornerRadius = 60.0  //枠の半径
+        rapButton.layer.borderWidth = 3.0
         rapButton.layer.borderColor = UIColor.black.cgColor
         //ストップボタンに関して
         stopButton.layer.masksToBounds = true //枠を丸く
-        stopButton.layer.cornerRadius = 40.0  //枠の半径
-        stopButton.layer.borderWidth = 4.0
+        stopButton.layer.cornerRadius = 60.0  //枠の半径
+        stopButton.layer.borderWidth = 3.0
         stopButton.layer.borderColor = UIColor.black.cgColor
         
         //初期画面ではラップとストップボタンを消す

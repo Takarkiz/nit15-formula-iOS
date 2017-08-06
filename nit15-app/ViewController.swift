@@ -23,6 +23,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     @IBOutlet var voltLabel:UILabel!
     @IBOutlet var timeLabel:UILabel!
     //@IBOutlet var oilLabel:UILabel!
+    @IBOutlet var lapCountLabel:UILabel!
     @IBOutlet var timeStateLabel:UILabel!
     //@IBOutlet var altaTimeLabel:UILabel!
     
@@ -40,6 +41,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     var timeState:[Int]!
     var pylonState:[Int]!
     var flagState: [Int]!
+    var lapState: [Int]!
     var timeArray:[Int]!
     
     var count:Float = 0.0
@@ -222,6 +224,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     waterNum = Int(byte)
                     print("水温:\(waterNum!)℃")
                     waterLabel.text = "\(waterNum!)"
+                    if waterNum >= 100{
+                        view.backgroundColor = UIColor.red
+                    }
                     
                     
                 }else if byte >= 120 && byte <= 150{
@@ -389,6 +394,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
         //timeという添え字で保存したデータを配列として生成
         timeArray = formattingArray.map{$0["time"]!}
         
+        lapState = formattingArray.map{$0["lap"]!}
+        lapCountLabel.text = "\(lapState.last!)L"
         self.timeCheck()
         print("受信完了")
     }
