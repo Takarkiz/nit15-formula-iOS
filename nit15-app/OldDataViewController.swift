@@ -4,13 +4,19 @@
 //
 //  Created by 澤田昂明 on 2017/01/06.
 //  Copyright © 2017年 takarki. All rights reserved.
-//
+//.
 
 import UIKit
+import Firebase
 
 class OldDataViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    let ref = FIRDatabase.database().reference()
+    var snap:FIRDataSnapshot!
     
+    //データ格納用の配列
+    var contentArray:[FIRDataSnapshot] = []
+    var timeArray:[String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

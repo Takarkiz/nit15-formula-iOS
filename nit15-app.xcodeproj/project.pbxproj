@@ -43,6 +43,7 @@
 		3CCEECE51E1F68D200FD7435 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CCEECE41E1F68D200FD7435 /* GoogleService-Info.plist */; };
 		7D1C1C7D00139ACB496CAD49 /* Pods_nit15_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28299547A5AF17BF796B1803 /* Pods_nit15_appTests.framework */; };
 		8C6527C26A89C4A2C09B6E4B /* Pods_nit15_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BF98ABF381835E61068BCC /* Pods_nit15_appUITests.framework */; };
+		AE1317DB1F49F8B100E4711E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1317DA1F49F8B100E4711E /* Colors.swift */; };
 		AE225CF51EE8411A0080EB23 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE61EE8411A0080EB23 /* Contents.json */; };
 		AE225CF61EE8411B0080EB23 /* icon-nit15-20.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE71EE8411A0080EB23 /* icon-nit15-20.png */; };
 		AE225CF71EE8411B0080EB23 /* icon-nit15-20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE225CE81EE8411A0080EB23 /* icon-nit15-20@2x.png */; };
@@ -127,6 +128,7 @@
 		44476B7D7317B2006EA073B4 /* Pods-nit15-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-app/Pods-nit15-app.release.xcconfig"; sourceTree = "<group>"; };
 		84A4CF2CD86F71347509B119 /* Pods-nit15-appUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E7F0CABC56167A9ABDB3FB4 /* Pods-nit15-appUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nit15-appUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nit15-appUITests/Pods-nit15-appUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AE1317DA1F49F8B100E4711E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AE225CE61EE8411A0080EB23 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		AE225CE71EE8411A0080EB23 /* icon-nit15-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-20.png"; sourceTree = "<group>"; };
 		AE225CE81EE8411A0080EB23 /* icon-nit15-20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-nit15-20@2x.png"; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				3C3EAB7D1E1F3FFC00838EFD /* DataViewController.swift */,
+				AE1317DA1F49F8B100E4711E /* Colors.swift */,
 				3C7F84DE1E25347E0064C524 /* FlagCollectionViewCell.swift */,
 			);
 			name = SendData;
@@ -692,6 +695,7 @@
 				3CBD9E871DF2382300285D9C /* ViewController.swift in Sources */,
 				AE591FC51F15C41300397743 /* Alert.swift in Sources */,
 				3C1C5CB11E25DCF000BD47EE /* AnotherLoginViewController.swift in Sources */,
+				AE1317DB1F49F8B100E4711E /* Colors.swift in Sources */,
 				3CBD9E851DF2382300285D9C /* AppDelegate.swift in Sources */,
 				3C7D72361E27377900FDA615 /* CustomClass.swift in Sources */,
 				3C3EAB8D1E1F5DAA00838EFD /* OldDataViewController.swift in Sources */,

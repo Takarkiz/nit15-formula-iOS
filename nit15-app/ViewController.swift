@@ -46,6 +46,8 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
     
     var count:Float = 0.0
     
+    var color = ColorASet()
+    
     //databaseViewControllerのインスタンスを作成
     let dataV:DataViewController = DataViewController()
     //フラッグとパイロンを表示するImageView
@@ -220,12 +222,14 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
                     
                     
                     //水温の場合
-                }else if byte >= 0 && byte <= 120{
+                }else if byte >= 20 && byte <= 130{
                     waterNum = Int(byte)
                     print("水温:\(waterNum!)℃")
                     waterLabel.text = "\(waterNum!)"
-                    if waterNum >= 100{
+                    if waterNum >= 120{
                         view.backgroundColor = UIColor.red
+                    }else{
+                        view.backgroundColor = color.colorWithHexString("84bcfc")
                     }
                     
                     
@@ -327,24 +331,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             self.reload(self.snap)
         })
     }
-    
-    
-    //フラッグや，タイム，パイロンカウントを受信する
-    func reserve(){
-        //FIRDataEventTypeをValueにすることにより，何かしらの変化があったときに実行
-        
-        //
-        ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").observe(.value, with: {(snapShots) in
-            if snapShots.children.allObjects is [FIRDataSnapshot]{
-                print("snapShots.children...\(snapShots.childrenCount)")
-                print("snapShot...\(snapShots)")
-                
-                self.snap = snapShots
-            }
-            self.reload(self.snap)
-        }
-        )
-    }
 
     
     //読み込んだデータをそれぞれ分ける
@@ -357,7 +343,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralDele
             for item in snap.children{
                 contentsArray.append(item as! FIRDataSnapshot)
             }
-            
             //ローカルのデータベースを更新
             ref.child((FIRAuth.auth()?.currentUser?.displayName)!).child("runinfo").keepSynced(true)
             //print("ローカルへの更新完了")
